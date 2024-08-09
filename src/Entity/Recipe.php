@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\RecetteRepository;
+use App\Repository\RecipeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RecetteRepository::class)]
-class Recette
+#[ORM\Entity(repositoryClass: RecipeRepository::class)]
+class Recipe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

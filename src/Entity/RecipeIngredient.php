@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\RecetteIngredientRepository;
+use App\Repository\RecipeIngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RecetteIngredientRepository::class)]
-class RecetteIngredient
+#[ORM\Entity(repositoryClass: RecipeIngredientRepository::class)]
+class RecipeIngredient
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,7 +21,7 @@ class RecetteIngredient
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Recette $idRecette = null;
+    private ?Recipe $idRecipe = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
@@ -56,14 +56,14 @@ class RecetteIngredient
         return $this;
     }
 
-    public function getIdRecette(): ?Recette
+    public function getIdRecipe(): ?Recipe
     {
-        return $this->idRecette;
+        return $this->idRecipe;
     }
 
-    public function setIdRecette(?Recette $idRecette): static
+    public function setIdRecipe(?Recipe $idRecipe): static
     {
-        $this->idRecette = $idRecette;
+        $this->idRecipe = $idRecipe;
 
         return $this;
     }

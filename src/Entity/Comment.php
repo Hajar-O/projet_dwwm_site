@@ -24,7 +24,7 @@ class Comment
     private ?User $idUser = null;
 
     #[ORM\ManyToOne]
-    private ?Recette $idRecette = null;
+    private ?Recipe $idRecipe = null;
 
     public function getId(): ?int
     {
@@ -67,14 +67,14 @@ class Comment
         return $this;
     }
 
-    public function getIdRecette(): ?Recette
+    public function getIdRecipe(): ?Recipe
     {
-        return $this->idRecette;
+        return $this->idRecipe;
     }
 
-    public function setIdRecette(?Recette $idRecette): static
+    public function setIdRecipe(?Recipe $idRecipe): static
     {
-        $this->idRecette = $idRecette;
+        $this->idRecipe = $idRecipe;
 
         return $this;
     }
