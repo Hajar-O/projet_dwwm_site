@@ -1,0 +1,23 @@
+{% extends 'admin/base.admin.html.twig' %}
+
+{% block content %}
+    <h1>Liste  des recettes</h1>
+
+    <table>
+            <tr>
+                <td>ID</td>
+                <td>Titre</td>
+                <td>Image</td>
+                <td>Date publication</td>
+            </tr>
+
+        {% for recipe in recipes %}
+            <tr>
+                <td><p>{{ recipe.id }}</p></td>
+                <td><h2>{{ recipe.title }}</h2></td>
+                <td><img src="{{ recipe.image }}" alt=""></td>
+                <td>{{ recipe.publishedAt | date('d/m/y') }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
