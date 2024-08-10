@@ -21,7 +21,21 @@
         </ul>
     </nav>
 </header>
+{#
+vérifie si des messages flashes ont été enregistrés
+par un controleur. Si oui, on les affiche
+#}
+{% for message in app.flashes('success') %}
+    <div class="success_message">
+        {{ message }}
+    </div>
+{% endfor %}
 
+{% for message in app.flashes('error') %}
+    <div class="error_message">
+        {{ message }}
+    </div>
+{% endfor %}
 {% block content %}
 {% endblock %}
 
