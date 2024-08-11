@@ -30,6 +30,11 @@ class AdminIngredientsController extends AbstractController
         try{
             $entityManager -> remove($ingredient);
             $entityManager->flush();
+
+            //permet d'enregister un message das la sessionn de PHP
+            //ce message sera afficher grâce à twig.
+            $this->addFlash('success', 'l\'ingrédient à bien été supprimé');
+
         } catch(\Exception $e){
             return $this->render('admin/error/error.html.twig', [
                 'error' => $e->getMessage()
@@ -68,7 +73,7 @@ class AdminIngredientsController extends AbstractController
 
     }
 
-    #[Route ('admin/ingredients/update/{id}', name: 'admin_ingredients_update-')]
+    #[Route ('admin/ingredients/update/{id}', name: 'admin_ingredients_update')]
     public function upDateIngredients( int $id,IngredientsRepository $ingredientsRepository ,Request $request, EntityManagerInterface $entityManager)
     {
         //je récupère l'ingrédient par l'id
@@ -87,6 +92,7 @@ class AdminIngredientsController extends AbstractController
             $entityManager->persist($ingredients);
             $entityManager->flush();
 
+            $this->addFlash('success', 'l\'ingrédient à bien été mis à jour');
             return $this->redirectToRoute('admin_ingredients');
         }
 

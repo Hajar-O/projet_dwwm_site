@@ -8,7 +8,7 @@
         <div>
             <p>{{ ingredient.ingredient }}</p>
             <p><a href="{{ path('admin_ingredients_delete',{id: ingredient.id}) }}">Supprimer l'ingrédient</a></p>
-            <p><a href="{{ path('admin_ingredients_update-',{id: ingredient.id}) }}">Modifier l'ingrédient</a></p>
+            <p><a href="{{ path('admin_ingredients_update',{id: ingredient.id}) }}">Modifier l'ingrédient</a></p>
         </div>
 
     {% endfor %}
