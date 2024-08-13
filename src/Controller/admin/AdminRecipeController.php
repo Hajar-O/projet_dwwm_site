@@ -3,6 +3,7 @@
 namespace App\Controller\admin;
 
 use App\Entity\Recipe;
+use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,55 +22,83 @@ class AdminRecipeController extends AbstractController
             ]);
     }
 
+    #[Route('/recipe-show/{id}', name: 'admin_recipe_show')]
+    public function showRecipe(int $id, RecipeRepository $recipeRepository)
+    {
+        $recipe = $recipeRepository->find($id);
+        return $this->render('public/recipe/recipe-show.html.twig', [
+            'recipe' => $recipe
+        ]);
+    }
+
     #[Route('/admin/recipe-add', name: 'admin_recipe_add')]
     public function  addRecipe(EntityManagerInterface $entityManager, Request $request)
     {
+        // on a créé une classe de "gabarit de formulaire HTML" avec php bin/console make:form
 
-        // dans ton form twig, pour les ingrédients => récupérer tous les ingredients (inregredient repository)
 
-        $recipe = null;
+        //je crée une classe de l'entité Recipe.
+        $recipe = new Recipe();
 
-        if($request->isMethod('POST')) {
+        $recipeForm = $this->createForm(RecipeType::class, $recipe);
 
-            $title = $request->request->get('title');
-            $description = $request->request->get('description');
-            $image = $request->request->get('image');
-            $time = $request->request->get('time');
-            $ingredients = $request->request->get('ingredients');
-            $mesure = $request->request->get('mesure');
-            $quantity = $request->request->get('quantity');
-            $gategory = $request->request->get('gategory');
+        $recipeForm->handleRequest($request);
 
-            $recipe = new Recipe();
+        if($recipeForm->isSubmitted() && $recipeForm->isValid()){
+            $entityManager->persist($recipe);
+            $entityManager->flush();
 
-            //Je passe en paramètre les valeurs
+            $this->addFlash('success', 'la recette à bien été ajouté');
 
-            $recipe->setTitle($title);
-            $recipe->setDescription($description);
-            $recipe->setImage($image);
-            $recipe->setTime($time);
-
+            return $this->redirectToRoute('admin_recipe');
         }
+            return $this->render('admin/recipe/recipe-add.html.twig', [
+                'recipeForm' => $recipeForm->createView()
+            ]);
+        }
+
+        #[Route('/admin/recipe-edit/{id}', name: 'admin_recipe_edit')]
+    public function upDateRecipe(int $id, RecipeRepository $recipeRepository, EntityManagerInterface $entityManager, Request $request)
+    {
+
+        $recipe = $recipeRepository->find($id);
+
+        $recipeUpdateForm = $this->createForm(RecipeType::class, $recipe);
+
+        $recipeUpdateForm->handleRequest($request);
+
+        if($recipeUpdateForm->isSubmitted() && $recipeUpdateForm->isValid()){
+            $entityManager->persist($recipe);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'La recette à bien été mise à jour.');
+            return $this->redirectToRoute('admin_recipe');
+        }
+
+        return $this->render('admin/recipe/recipe-edit.html.twig', [
+            'recipeForm' => $recipeUpdateForm->createView()
+        ]);
     }
 
     #[Route('/admin/recipe-delete/{id}', name: 'admin_recipe_delete')]
-    public function deleteRecipe(int $id, RecipeRepository $recipeRepository ,EntityManagerInterface $entityManager)
+    public function deleteRecipe(int $id, RecipeRepository $recipeRepository, EntityManagerInterface $entityManager)
     {
+
         $recipe = $recipeRepository->find($id);
-        if(!$recipe){
-            $html404 = $this->renderView('admin/error/404.html.twig');
-            return new Response($html404, 404);
-        }
 
         try{
             $entityManager->remove($recipe);
             $entityManager->flush();
 
+            $this->addFlash('success', 'la rectte à bien été supprimer');
+            return $this->redirectToRoute('admin_recipe');
         } catch(\Exception $e){
-            return $this->render('admin/error/500.html.twig',[
-                'error' => $e->getMessage()
-                ]);
+            return $this->render('admin/recipe/delete.html.twig', [
+                'recipe' => $recipe
+            ]);
         }
-        return $this->redirectToRoute('admin_recipe_list');
+
     }
+
+
 }

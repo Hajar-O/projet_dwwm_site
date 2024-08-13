@@ -1,15 +1,16 @@
-{% extends 'admin/base.admin.html.twig' %}
+{% extends 'public/base.html.twig' %}
 
 {% block content %}
 
     <main>
         <div>
             <h3>{{ recipe.title }}</h3>
-            <p>{{ recipe.category }}</p>
-            <p>{{ recipe.time }}</p>
-            <p>{{ recipe.description }}</p>
+            {# <p>{{ recipe.idCategory }}</p> #}
+            <p> temps :{{ recipe.time }}</p>
+            <p>Déroulé de la recette :{{ recipe.description }}</p>
+            <p>Publié le : {{ recipe.publishedAt | date('d/m/y') }}</p>
         </div>
-       
+
     </main>
 
 {% endblock %}

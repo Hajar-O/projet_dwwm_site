@@ -39,16 +39,16 @@ class Recipe
     private ?Category $idCategory = null;
 
     /**
-     * @var Collection<int, Ingredients>
+     * @var Collection<int, Ingredient>
      */
-    #[ORM\ManyToMany(targetEntity: Ingredients::class, inversedBy: 'recipes')]
+    #[ORM\ManyToMany(targetEntity: Ingredient::class, inversedBy: 'recipes')]
     private Collection $ingredients;
 
     public function __construct()
     {
         $this->ingredients = new ArrayCollection();
+        $this->publishedAt = new \DateTimeImmutable('NOW');
     }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -139,14 +139,14 @@ class Recipe
     }
 
     /**
-     * @return Collection<int, Ingredients>
+     * @return Collection<int, Ingredient>
      */
-    public function getIngredients(): Collection
+    public function getIngredient(): Collection
     {
         return $this->ingredients;
     }
 
-    public function addIngredient(Ingredients $ingredient): static
+    public function addIngredient(Ingredient $ingredient): static
     {
         if (!$this->ingredients->contains($ingredient)) {
             $this->ingredients->add($ingredient);
@@ -155,7 +155,7 @@ class Recipe
         return $this;
     }
 
-    public function removeIngredient(Ingredients $ingredient): static
+    public function removeIngredient(Ingredient $ingredient): static
     {
         $this->ingredients->removeElement($ingredient);
 
