@@ -7,23 +7,31 @@
          {{ form_row(recipeForm.title) }}
          {{ form_row(recipeForm.image) }}
          {{ form_row(recipeForm.idCategory) }}
-     {{ form_end(recipeForm) }}
+
      <label>Ingrédients</label>
      {# pour chaque famille d'ingrédient #}
-     <details>
-         <summary>{{Famille.name}}</summary>
-         {# pour chaque ingrédient dans la famille #}
-             <input  type="checkbox"> {{ ingredient.name}} <input type="number">
-             <select name="volume" id="">
-                 <option value="litre">L</option>
-                 <option value="gramme">g</option>
+         {% for categoryIngredient in categoryIngredients %}
+             <details>
+                 <summary>{{categoryIngredient.name}}</summary>
 
-             </select>
-     </details>
-     <input  type="text">
-     {{ form_start(recipeForm) }}
+                 {# pour chaque ingrédient dans la category #}
 
-         {{ form_row(recipeForm.description) }}
+                 {% for ingredient in categoryIngredient.ingredients %}
+
+                     <input  type="checkbox"> {{ ingredient.ingredient }} <input type="number">
+                     <select name="volume" id="">
+                         <option value="litre">L</option>
+                         <option value="gramme">g</option>
+
+                     </select>
+                 {% endfor %}
+             </details>
+         {% endfor %}
+
+
+
+
+
 
      {{ form_end(recipeForm) }}
  </main>

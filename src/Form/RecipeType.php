@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Entity\Ingredient;
 use App\Entity\Recipe;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -21,18 +22,23 @@ class RecipeType extends AbstractType
                 'widget' => 'single_text',
             ])
             ->add('time')
-            ->add('description')
+            ->add('description',CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#000000'
+                )
+            ))
+
             ->add('image')
             ->add('isPublished')
             ->add('idCategory', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'type',
             ])
-            ->add('ingredients', EntityType::class, [
+           /* ->add('ingredient', EntityType::class, [
                 'class' => Ingredient::class,
                 'choice_label' => 'ingredient',
                 'multiple'=> true,
-            ])
+            ])*/
             ->add('save', SubmitType::class, [])
         ;
     }
