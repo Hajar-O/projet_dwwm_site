@@ -5,7 +5,6 @@ namespace App\Controller\admin;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
 use App\Repository\CategoryIngredientRepository;
-use App\Repository\IngredientRepository;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,7 +33,7 @@ class AdminRecipeController extends AbstractController
     }
 
     #[Route('/admin/recipe-add', name: 'admin_recipe_add')]
-    public function  addRecipe(IngredientRepository $ingredientRepository ,CategoryIngredientRepository $categoryIngredientRepository,EntityManagerInterface $entityManager, Request $request)
+    public function  addRecipe(CategoryIngredientRepository $categoryIngredientRepository,EntityManagerInterface $entityManager, Request $request)
     {
         // on a créé une classe de "gabarit de formulaire HTML" avec php bin/console make:form
 
@@ -64,11 +63,11 @@ class AdminRecipeController extends AbstractController
         }
 
         #[Route('/admin/recipe-edit/{id}', name: 'admin_recipe_edit')]
-    public function upDateRecipe(int $id, RecipeRepository $recipeRepository, EntityManagerInterface $entityManager, Request $request)
+    public function upDateRecipe(int $id, RecipeRepository $recipeRepository,CategoryIngredientRepository $categoryIngredientRepository, EntityManagerInterface $entityManager, Request $request)
     {
 
         $recipe = $recipeRepository->find($id);
-
+        $categoryIng = $categoryIngredientRepository->findAll();
         $recipeUpdateForm = $this->createForm(RecipeType::class, $recipe);
 
         $recipeUpdateForm->handleRequest($request);
@@ -82,7 +81,8 @@ class AdminRecipeController extends AbstractController
         }
 
         return $this->render('admin/recipe/recipe-edit.html.twig', [
-            'recipeForm' => $recipeUpdateForm->createView()
+            'recipeForm' => $recipeUpdateForm->createView(),
+            'categoryIngredients' => $categoryIng
         ]);
     }
 
