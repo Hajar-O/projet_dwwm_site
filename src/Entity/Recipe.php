@@ -38,12 +38,6 @@ class Recipe
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $idCategory = null;
 
-    /**
-     * @var Collection<int, Ingredient>
-     */
-    #[ORM\ManyToMany(targetEntity: Ingredient::class, inversedBy: 'recipes')]
-    private Collection $ingredients;
-
     public function __construct()
     {
         $this->ingredients = new ArrayCollection();
@@ -134,30 +128,6 @@ class Recipe
     public function setIdCategory(?Category $idCategory): static
     {
         $this->idCategory = $idCategory;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Ingredient>
-     */
-    public function getIngredient(): Collection
-    {
-        return $this->ingredients;
-    }
-
-    public function addIngredient(Ingredient $ingredient): static
-    {
-        if (!$this->ingredients->contains($ingredient)) {
-            $this->ingredients->add($ingredient);
-        }
-
-        return $this;
-    }
-
-    public function removeIngredient(Ingredient $ingredient): static
-    {
-        $this->ingredients->removeElement($ingredient);
 
         return $this;
     }

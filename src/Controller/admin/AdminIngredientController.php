@@ -4,6 +4,7 @@ namespace App\Controller\admin;
 
 use App\Entity\Ingredient;
 use App\Form\IngredientType;
+use App\Repository\CategoryIngredientRepository;
 use App\Repository\IngredientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,13 +45,13 @@ class AdminIngredientController extends AbstractController
     }
 
     #[Route ('admin/ingredients-add', name: 'admin_ingredients_add')]
-    public function insertIngredient(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator )
+    public function insertIngredient(Request $request,CategoryIngredientRepository $categoryIngredientRepository, EntityManagerInterface $entityManager, ValidatorInterface $validator )
     {
         // on a créé une classe de "gabarit de formulaire HTML" avec php bin/console make:form
 
         // je créé une instance de la classe d'entité Ingredient
         $ingredients = new Ingredient();
-
+        $CategoryIng = $categoryIngredientRepository->findAll();
         // permet de générer une instance de la classe de gabarit de formulaire
         // et de la lier avec l'instance de l'entité
         $ingredientsForm = $this->createForm(IngredientType::class, $ingredients);
@@ -67,7 +68,8 @@ class AdminIngredientController extends AbstractController
             return $this->redirectToRoute('admin_ingredients');
         }
         return $this->render('admin/recipe/ingredient/ingredients-insert.html.twig', [
-            'ingredientsForm' => $ingredientsForm->createView()
+            'ingredientsForm' => $ingredientsForm->createView(),
+            'categoryIngredients' => $CategoryIng,
         ]);
 
 
