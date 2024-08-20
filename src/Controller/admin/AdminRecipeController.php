@@ -48,8 +48,21 @@ class AdminRecipeController extends AbstractController
         $recipeForm->handleRequest($request);
 
         if($recipeForm->isSubmitted() && $recipeForm->isValid()){
+            //Je stocke dans $recipeIngredient un tableau, et je le clone.
+            $recipeIngredients = clone $recipe->getRecipeIngredients();
+            //Pour chaque tableau de
+            foreach ($recipe->getRecipeIngredients() as $recipeIngredient) {
+                $recipe->removeRecipeIngredient($recipeIngredient);
+            }
+
             $entityManager->persist($recipe);
             $entityManager->flush();
+
+            foreach ($recipeIngredients as $recipeIngredient) {
+                $recipeIngredient->setRecipe($recipe);
+                $entityManager->persist($recipeIngredient);
+                $entityManager->flush();
+            }
 
             $this->addFlash('success', 'la recette à bien été ajouté');
 

@@ -38,10 +38,13 @@ class Recipe
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $idCategory = null;
 
+    #[ORM\OneToMany(targetEntity: RecipeIngredient::class, mappedBy: 'recipe', cascade:['persist'])]
+    private Collection $recipeIngredients;
+
     public function __construct()
     {
-        $this->ingredients = new ArrayCollection();
         $this->publishedAt = new \DateTimeImmutable('NOW');
+        $this->recipeIngredients = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -128,6 +131,48 @@ class Recipe
     public function setIdCategory(?Category $idCategory): static
     {
         $this->idCategory = $idCategory;
+
+        return $this;
+    }
+
+    public function isPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setPublished(bool $isPublished): static
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RecipeIngredient>
+     */
+    public function getRecipeIngredients(): Collection
+    {
+        return $this->recipeIngredients;
+    }
+
+    public function addRecipeIngredient(RecipeIngredient $recipeIngredient): static
+    {
+        if (!$this->recipeIngredients->contains($recipeIngredient)) {
+            $this->recipeIngredients->add($recipeIngredient);
+            $recipeIngredient->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecipeIngredient(RecipeIngredient $recipeIngredient): static
+    {
+        if ($this->recipeIngredients->removeElement($recipeIngredient)) {
+            // set the owning side to null (unless already changed)
+            if ($recipeIngredient->getRecipe() === $this) {
+                $recipeIngredient->setRecipe(null);
+            }
+        }
 
         return $this;
     }
