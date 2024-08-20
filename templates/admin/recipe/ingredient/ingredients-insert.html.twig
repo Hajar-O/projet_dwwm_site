@@ -5,10 +5,7 @@
     <section class="formIngre">
         {{ form_start(ingredientsForm) }}
 
-                {% for categoryIngredient in categoryIngredients %}
-                <details>
-                    <summary>{{categoryIngredient.name}}</summary>
-                {% endfor %}
+
 
             {{ form_row(ingredientsForm.ingredient) }}
             {# choix de la catégory de l'ingredient #}

@@ -1,0 +1,40 @@
+header {
+  background: url("../img/bc-home.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  z-index: 200;
+
+
+  position: relative;
+.filtre{
+  position: absolute;
+  height: 93vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.27);
+  z-index: 400;
+}
+  nav{
+    height: 55px;
+    background-color: rgba(0, 0, 0, 0.72);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ul{
+      display: flex;
+      //justify-content: center;
+      gap: 50px;
+
+    }
+    li{
+      align-items: center;
+        }
+  }
+}
+header{
+  a{
+    color: white;
+    text-transform: uppercase;
+  }
+}

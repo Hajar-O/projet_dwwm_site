@@ -3,6 +3,8 @@
 {% block content %}
 
     <h1>Liste des ingrédients disponibles.</h1>
+
+    <button><a href="{{ path('admin_ingredients_add') }}">Ajouter un ingredient</a></button>
     {% for ingredient in ingredients %}
 
         <div>
