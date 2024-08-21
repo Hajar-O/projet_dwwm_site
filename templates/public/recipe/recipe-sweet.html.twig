@@ -1,0 +1,12 @@
+{%  extends 'public/base.html.twig' %}
+
+{% block content %}
+
+    {% for recipe in recipes %}
+        <div>
+            {{ recipe.title }}
+            <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="">
+        </div>
+    {% endfor %}
+
+{% endblock content %}

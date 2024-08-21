@@ -18,17 +18,10 @@ class RecipeController extends AbstractController
         ]);
     }
 
-    #[Route('/recipe/{id}', name: 'recipe')]
-    public function showRecipe(int $id, RecipeRepository $recipeRepository)
-    {
-        $recipe = $recipeRepository->find($id);
-        return $this->render('recipe/recipe.html.twig', [
-            'recipe' => $recipe
-        ]);
-    }
 
-    #[Route('/recipe-slated', name: 'recipe')]
-    public function showRecipeSlated( RecipeRepository $recipeRepository, CategoryRepository $categoryRepository): Response
+
+    #[Route('/recipe/salted', name: 'recipe-salted')]
+    public function showSaltedRecipes( RecipeRepository $recipeRepository, CategoryRepository $categoryRepository): Response
     {
 
         $categoryType = $categoryRepository->findOneById(1);
@@ -43,5 +36,32 @@ class RecipeController extends AbstractController
         }
         return $this->render('public/error/404.html.twig');
 
+    }
+
+    #[Route('/recipe/sweet', name: 'recipe-sweet')]
+    public function showSweetRecipes( RecipeRepository $recipeRepository, CategoryRepository $categoryRepository): Response
+    {
+
+        $categoryType = $categoryRepository->findOneById(2);
+
+        if($categoryType){
+            $recipes =  $recipeRepository->RecipesByCategory($categoryType);
+
+            return $this->render('public/recipe/recipe-sweet.html.twig', [
+                'recipes' => $recipes,
+                'categoryType' => $categoryType
+            ]);
+        }
+        return $this->render('public/error/404.html.twig');
+
+    }
+
+    #[Route('/recipe/all/{id}', name: 'recipe')]
+    public function showRecipe(int $id, RecipeRepository $recipeRepository)
+    {
+        $recipe = $recipeRepository->find($id);
+        return $this->render('recipe/recipe.html.twig', [
+            'recipe' => $recipe
+        ]);
     }
 }
