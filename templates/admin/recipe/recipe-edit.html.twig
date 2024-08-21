@@ -8,29 +8,41 @@
         {{ form_row(recipeForm.title) }}
         {{ form_row(recipeForm.image) }}
         {{ form_row(recipeForm.idCategory) }}
-        {# { { form_row(recipeForm.ingredient) } }#}
 
-        <label>Ingrédients</label>
-        {# pour chaque famille d'ingrédient #}
-        {% for categoryIngredient in categoryIngredients %}
-            <details>
-                <summary>{{categoryIngredient.name}}</summary>
-
-                {# pour chaque ingrédient dans la category #}
-
-                {% for ingredient in categoryIngredient.ingredients %}
-
-                    <input  type="checkbox"> {{ ingredient.ingredient }} <input type="number">
-                    <select name="volume" id="">
-                        <option value="litre">L</option>
-                        <option value="gramme">g</option>
-
-                    </select>
-                {% endfor %}
-            </details>
-        {% endfor %}
+        <ul class="recipeIngredients"
+            data-index="{{ recipeForm.recipeIngredients|length > 0 ? recipeForm.recipeIngredients|last.vars.name + 1 : 0 }}"
+            data-prototype="{{ form_widget(recipeForm.recipeIngredients.vars.prototype)|e('html_attr') }}"
+        ></ul>
+        <button type="button" class="add_item_link" data-collection-holder-class="recipeIngredients">Add an ingredient</button>
 
         {{ form_end(recipeForm) }}
-    </main>
+    </main>{% block javascriptEnd %}
+    <script>
+        document
+            .querySelectorAll('.add_item_link')
+            .forEach(btn => {
+                btn.addEventListener("click", addFormToCollection)});
 
+        function addFormToCollection(e) {
+            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+
+            const item = document.createElement('li');
+
+            item.innerHTML = collectionHolder
+                .dataset
+                .prototype
+                .replace(
+                    /__name__/g,
+                    collectionHolder.dataset.index
+                );
+
+            collectionHolder.appendChild(item);
+
+            collectionHolder.dataset.index++;
+        };
+
+
+
+    </script>
+{% endblock %}
 {% endblock %}

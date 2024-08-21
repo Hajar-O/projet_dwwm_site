@@ -38,7 +38,7 @@ class Recipe
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $idCategory = null;
 
-    #[ORM\OneToMany(targetEntity: RecipeIngredient::class, mappedBy: 'recipe', cascade:['persist'])]
+    #[ORM\OneToMany(targetEntity: RecipeIngredient::class, mappedBy: 'recipe', cascade:['persist', 'remove'])]
     private Collection $recipeIngredients;
 
     public function __construct()

@@ -7,7 +7,7 @@
             <tr>
                 <td>ID</td>
                 <td>Titre</td>
-                <td>Image</td>
+                {# <td>Image</td> #}
                 <td>Date publication</td>
                 <td>Modification</td>
             </tr>
@@ -16,7 +16,7 @@
             <tr>
                 <td><p>{{ recipe.id }}</p></td>
                 <td><h2>{{ recipe.title }}</h2></td>
-                <td><img src="{{ recipe.image }}" alt=""></td>
+               {# <td><img src="{{ asset('assets/uploads/'~recipe.image) }}" alt=""></td> #}
                 <td>{{ recipe.publishedAt | date('d/m/y') }}</td>
                 <td>
                     <p><a href="{{ path('admin_recipe_edit', {id: recipe.id}) }}">Modifier</a></p>
