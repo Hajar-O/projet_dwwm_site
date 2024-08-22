@@ -128,6 +128,7 @@ class AdminRecipeController extends AbstractController
         if($recipeUpdateForm->isSubmitted() && $recipeUpdateForm->isValid()){
 
             $imageFile = $recipeUpdateForm->get('image')->getData();
+
             if ($imageFile) {
                 //je récupère son nom
                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -153,32 +154,19 @@ class AdminRecipeController extends AbstractController
                 $recipe->setImage($newFilename);
 
             }
-
-            $recipeIngredients = clone $recipe->getRecipeIngredients();
+            //Je boucle sur tous les ingrédients associé à la recette
             foreach ($recipe->getRecipeIngredients() as $recipeIngredient) {
-                $recipe->removeRecipeIngredient($recipeIngredient);
-                $entityManager->persist($recipe);
-                $entityManager->flush();
+                //j'associe les ingrédients à la recette acctuelle
+                $recipeIngredient->setRecipe($recipe);
+                //je demande a EntityManager de préparer la sauvgarde des Ingrédients en bdd
+                $entityManager->persist($recipeIngredient);
             }
-
-            //dd($recipe);
+            //je demande a EntityManager de préparer la sauvgarde de la Recipe en bdd
             $entityManager->persist($recipe);
+            //j'exécute la sauvgarde des ingrédients et de la Recipe
             $entityManager->flush();
 
-            foreach ($recipeIngredients as $recipeIngredient) {
-                $recipeIngredient->setRecipe($recipe);
-                $entityManager->persist($recipeIngredient);
-                $entityManager->flush();
-            }
 
-            //dd($recipe);
-
-
-            /*foreach ($recipeIngredients as $recipeIngredient) {
-                $recipeIngredient->setRecipe($recipe);
-                $entityManager->persist($recipeIngredient);
-                $entityManager->flush();
-            }*/
 
             $this->addFlash('success', 'La recette à bien été mise à jour.');
             return $this->redirectToRoute('admin_recipe');
