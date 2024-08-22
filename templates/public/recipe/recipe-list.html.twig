@@ -2,22 +2,33 @@
 
 {% block content %}
     <main id="AllRecipe">
-        <h2>nos recettes</h2>
-        <section class="allRecipe">
 
-
-            {% for recipe in recipes %}
-                <a href="{{ path('recipe',{id:recipe.id}) }}">
-                    <article class="recipe">
-                        <div class="recipeImg">
-                            <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="">
-                        </div>
-                        <h3>{{ recipe.title }}</h3>
-                    </article>
-                </a>
-            {% endfor %}
-
+    {% block image %}
+        <section id="imgDefault">
+            <div class="imgDefault">
+                <img src="{{ asset('assets/img/bc-home.jpg') }}" alt="">
+            </div>
         </section>
+
+    {% endblock image %}
+            <h2>nos recettes</h2>
+            <section class="allRecipe">
+
+
+                {% for recipe in recipes %}
+                    <a href="{{ path('recipe',{id:recipe.id}) }}">
+                        <article class="recipe">
+                            <div class="recipeImg">
+                                <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="">
+                            </div>
+                            <h3>{{ recipe.title }}</h3>
+                        </article>
+                    </a>
+                {% endfor %}
+
+            </section>
+
+
     </main>
 
 

@@ -1,9 +1,20 @@
 {% extends 'public/base.html.twig' %}
 
+{% block body %}
 {% block content %}
 
     <main id="Recipe">
-                <h3>{{ recipe.title }}</h3>
+
+        {% block image %}
+            <section id="imgRecipe">
+                <div class="imgRecipe">
+                    <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="">
+                    <h3>{{ recipe.title }}</h3>
+                </div>
+            </section>
+        {% endblock image %}
+
+
         <article>
 
             <section>
@@ -32,4 +43,5 @@
 
     </main>
 
-{% endblock %}
+{% endblock content %}
+{% endblock body %}

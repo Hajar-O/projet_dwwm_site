@@ -3,6 +3,10 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+    {% block content %}
+        {% block image %}
+            <img src="{{ asset('assets/img/bc-home.jpg') }}" alt="">
+        {% endblock image %}
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -38,4 +42,5 @@
             Sign in
         </button>
     </form>
+        {% endblock content %}
 {% endblock %}
