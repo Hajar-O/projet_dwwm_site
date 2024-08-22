@@ -1,0 +1,16 @@
+footer{
+  background-color: #3b3838;
+
+  nav{
+    @include display;
+    height: 30vh;
+    align-items: center;
+      ul{
+        display: flex;
+        gap: 50px;
+        a{
+          color: white;
+        }
+    }
+  }
+}

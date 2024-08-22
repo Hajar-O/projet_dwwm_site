@@ -1,40 +1,52 @@
 header {
-  background: url("../img/bc-home.jpg");
+  background:  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/bc-home.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
   z-index: 200;
+    a{
+      color: white;
+      text-transform: uppercase;
+      font-family: 'Courier New', Monospace;
+      font-weight: lighter;
+    }
 
-
-  position: relative;
-.filtre{
-  position: absolute;
-  height: 93vh;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.27);
-  z-index: 400;
-}
   nav{
     height: 55px;
     background-color: rgba(0, 0, 0, 0.72);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    position: relative;
+
     ul{
       display: flex;
-      //justify-content: center;
       gap: 50px;
-
     }
     li{
+      display: flex;
       align-items: center;
-        }
+    }
+    .ulNone{
+      display: none;
+      li{
+        margin: 10px;
+      }
+    }
+    li:hover .ulNone{
+      display: block;
+      //padding: 10px;
+      background-color: rgba(0, 0, 0, 0.73);
+      position: absolute;
+      bottom: -66px;
+      left: 450px;
+    }
   }
 }
-header{
-  a{
-    color: white;
-    text-transform: uppercase;
-  }
+
+/*-----------NAV-HOVER---------*/
+nav{
+
+
 }

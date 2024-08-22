@@ -1,4 +1,8 @@
 @import "abstract/variables";
+@import "abstract/mixin";
 @import "general";
 @import "layout/public/header";
+@import "layout/public/mains/mainAllRecipe";
+@import "layout/public/mains/mainOneRecipe";
 @import "layout/public/footer";
+@import "layout/public/mains/mainHome";

@@ -1,14 +1,24 @@
 {% extends 'public/base.html.twig' %}
 
 {% block content %}
+    <main id="AllRecipe">
+        <h2>nos recettes</h2>
+        <section class="allRecipe">
 
-    <section>
-        {% for recipe in recipes %}
-            <article>
-                <h3>{{ recipe.title }}</h3>
-                <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="">
-            </article>
-        {% endfor %}
-    </section>
+
+            {% for recipe in recipes %}
+                <a href="{{ path('recipe',{id:recipe.id}) }}">
+                    <article class="recipe">
+                        <div class="recipeImg">
+                            <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="">
+                        </div>
+                        <h3>{{ recipe.title }}</h3>
+                    </article>
+                </a>
+            {% endfor %}
+
+        </section>
+    </main>
+
 
 {% endblock content %}

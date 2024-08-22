@@ -1,0 +1,9 @@
+@mixin wrap ($place:space-evenly){
+  display: flex;
+  justify-content: $place;
+  flex-wrap: wrap;
+}
+@mixin display($place: center){
+  display: flex;
+  justify-content: $place ;
+}

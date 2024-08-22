@@ -2,6 +2,7 @@
 
 namespace App\Controller\public;
 use App\Repository\CategoryRepository;
+use App\Repository\RecipeIngredientRepository;
 use App\Repository\RecipeRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,11 +58,13 @@ class RecipeController extends AbstractController
     }
 
     #[Route('/recipe/all/{id}', name: 'recipe')]
-    public function showRecipe(int $id, RecipeRepository $recipeRepository)
+    public function showRecipe(int $id,RecipeIngredientRepository $ingredientRepository, RecipeRepository $recipeRepository)
     {
         $recipe = $recipeRepository->find($id);
-        return $this->render('recipe/recipe.html.twig', [
-            'recipe' => $recipe
+        $ingredients = $ingredientRepository->findAll();
+        return $this->render('public/recipe/recipe-show.html.twig', [
+            'recipe' => $recipe,
+            'ingredients' => $ingredients
         ]);
     }
 }

@@ -2,10 +2,24 @@
 
 {% block content %}
 
-    {% for recipe in recipes %}
-        <div>
-            {{ recipe.title }}
-        </div>
-    {% endfor %}
+    <main id="AllRecipe">
+        <h2>nos recettes</h2>
+        <section class="allRecipe">
+
+
+            {% for recipe in recipes %}
+                <a href="{{ path('recipe',{id:recipe.id}) }}">
+                    <article class="recipe">
+                        <div class="recipeImg">
+                            <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="">
+                        </div>
+                        <h3>{{ recipe.title }}</h3>
+                    </article>
+                </a>
+            {% endfor %}
+
+        </section>
+    </main>
 
 {% endblock content %}
+

@@ -2,14 +2,33 @@
 
 {% block content %}
 
-    <main>
-        <div>
-            <h3>{{ recipe.title }}</h3>
-            {# <p>{{ recipe.idCategory }}</p> #}
-            <p> temps :{{ recipe.time }}</p>
-            <p>Déroulé de la recette :{{ recipe.description }}</p>
+    <main id="Recipe">
+                <h3>{{ recipe.title }}</h3>
+        <article>
+
+            <section>
+
+                <div class="ingredient">
+                    <h4>Ingrédients</h4>
+
+                    <div>
+                        {% for ingredient in ingredients %}
+                                <p>ingrédient</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h4>Préparation</h4>
+                    <div>
+                        <p>{{ recipe.description }}</p>
+                    </div>
+
+                </div>
+
+            </section>
             <p>Publié le : {{ recipe.publishedAt | date('d/m/y') }}</p>
-        </div>
+        </article>
 
     </main>
 
