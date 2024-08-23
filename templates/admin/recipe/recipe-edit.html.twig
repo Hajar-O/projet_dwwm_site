@@ -11,17 +11,36 @@
 
         <ul class="recipeIngredients"
             data-index="{{ recipeForm.recipeIngredients|length > 0 ? recipeForm.recipeIngredients|last.vars.name + 1 : 0 }}"
-            data-prototype="{{ form_widget(recipeForm.recipeIngredients.vars.prototype)|e('html_attr') }}"
-        ></ul>
+            data-prototype="{{ form_widget(recipeForm.recipeIngredients.vars.prototype)|e('html_attr') }}">
+
+            {% for ingredient in recipeForm.recipeIngredients %}
+                <li>
+                    {{ form_row(ingredient) }}
+                    <button type="button" class="btn-remove-ingredient">Remove</button>
+                </li>
+            {% endfor %}
+        </ul>
         <button type="button" class="add_item_link" data-collection-holder-class="recipeIngredients">Add an ingredient</button>
 
         {{ form_end(recipeForm) }}
-    </main>{% block javascriptEnd %}
+    </main>
+
+    {% block javascriptEnd %}
     <script>
         document
             .querySelectorAll('.add_item_link')
             .forEach(btn => {
                 btn.addEventListener("click", addFormToCollection)});
+
+        document
+            .querySelectorAll('.recipeIngredients')
+            .forEach(collection => {
+                collection.addEventListener('click', function(e) {
+                    if (e.target && e.target.classList.contains('btn-remove-ingredient')) {
+                        removeFormFromCollection(e);
+                    }
+                });
+            });
 
         function addFormToCollection(e) {
             const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
@@ -39,9 +58,14 @@
             collectionHolder.appendChild(item);
 
             collectionHolder.dataset.index++;
-        };
+        }
 
-
+        function removeFormFromCollection(e) {
+            const item = e.target.closest('li');
+            if (item) {
+                item.remove();
+            }
+        }
 
     </script>
 {% endblock %}

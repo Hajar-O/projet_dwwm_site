@@ -6,6 +6,7 @@ use App\Entity\Recipe;
 use App\Form\RecipeType;
 use App\Repository\CategoryIngredientRepository;
 use App\Repository\RecipeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -123,6 +124,11 @@ class AdminRecipeController extends AbstractController
         $categoryIng = $categoryIngredientRepository->findAll();
         $recipeUpdateForm = $this->createForm(RecipeType::class, $recipe);
 
+        $originalIngredients= new ArrayCollection();
+        foreach($recipe->getRecipeIngredients() as $ingredient){
+            $originalIngredients->add($ingredient);
+        }
+
         $recipeUpdateForm->handleRequest($request);
 
         if($recipeUpdateForm->isSubmitted() && $recipeUpdateForm->isValid()){
@@ -152,8 +158,18 @@ class AdminRecipeController extends AbstractController
                 // je stocke dans la propriété image
                 // de l'entité article le nom du fichier
                 $recipe->setImage($newFilename);
-
             }
+
+            // Supprimer les ingrédients qui ne sont plus présents dans le formulaire
+            foreach ($originalIngredients as $originalIngredient) {
+
+                if (false === $recipe->getRecipeIngredients()->contains($originalIngredient)) {
+                    // Supprimer l'ingrédient de la recette et de la base de données
+                    $recipe->removeRecipeIngredient($originalIngredient);
+                    $entityManager->remove($originalIngredient);
+                }
+            }
+
             //Je boucle sur tous les ingrédients associé à la recette
             foreach ($recipe->getRecipeIngredients() as $recipeIngredient) {
                 //j'associe les ingrédients à la recette acctuelle
