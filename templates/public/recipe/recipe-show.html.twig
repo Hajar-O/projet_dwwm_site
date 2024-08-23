@@ -8,8 +8,8 @@
         {% block image %}
             <section id="imgRecipe">
                 <div class="imgRecipe">
-                    <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="">
-                    <h3>{{ recipe.title }}</h3>
+                    <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="Image {{ recipe.title }}">
+                    <h2>{{ recipe.title }}</h2>
                 </div>
             </section>
         {% endblock image %}
@@ -23,8 +23,18 @@
                     <h4>Ingrédients</h4>
 
                     <div>
-                        {% for ingredient in ingredients %}
-                                <p>ingrédient</p>
+                        {% for RecipeIngredient in recipe.recipeIngredients %}
+                            <table>
+                                <tr>
+                                    <td>{{ RecipeIngredient.ingredient.ingredient }}</td>
+                                    <td>{{ RecipeIngredient.quantity }}</td>
+                                    <td>{{ RecipeIngredient.measure.name }}</td>
+                                </tr>
+                            </table>
+
+
+
+
                         {% endfor %}
                     </div>
                 </div>

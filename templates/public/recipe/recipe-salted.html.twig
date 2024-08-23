@@ -3,7 +3,16 @@
 {% block content %}
 
     <main id="AllRecipe">
-        <h2>nos recettes salées</h2>
+        {% block image %}
+            <section id="imgDefaultList">
+                <div class="imgDefaultList">
+                    <img src="{{ asset('assets/img/bc-home.jpg') }}" alt="">
+                    <h2>nos recettes salées</h2>
+                </div>
+            </section>
+
+        {% endblock image %}
+
         <section class="allRecipe">
 
 

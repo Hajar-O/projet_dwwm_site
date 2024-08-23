@@ -64,7 +64,7 @@ class RecipeController extends AbstractController
         $ingredients = $ingredientRepository->findAll();
         return $this->render('public/recipe/recipe-show.html.twig', [
             'recipe' => $recipe,
-            'ingredients' => $ingredients
+            'ingredients' => $recipe->getRecipeIngredients()
         ]);
     }
 }

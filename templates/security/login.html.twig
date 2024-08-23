@@ -1,12 +1,12 @@
-{% extends 'public/base.html.twig' %}
+{% extends 'admin/base.admin.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
     {% block content %}
-        {% block image %}
+        {# {% block image %}
             <img src="{{ asset('assets/img/bc-home.jpg') }}" alt="">
-        {% endblock image %}
+        {% endblock image %} #}
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
