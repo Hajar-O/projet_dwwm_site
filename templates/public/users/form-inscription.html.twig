@@ -1,0 +1,45 @@
+{% extends 'public/base.html.twig' %}
+{% block title %}All Cook : Inscription{% endblock %}
+{% block content %}
+
+    <main id="inscriptionForm">
+        {% block image %}
+            <section id="imgDefault">
+                <div class="imgDefault">
+                    <img src="{{ asset('assets/img/bc-home.jpg') }}" alt="">
+                </div>
+            </section>
+        {% endblock image %}
+
+        <section class="formInscription">
+            <h4>Inscription</h4>
+            {{ form_start(userForm) }}
+                <div class="inputWrapper">
+                    {{ form_widget(userForm.pseudo)}}
+                    {{ form_label(userForm.pseudo) }}
+                    {{ form_errors(userForm.pseudo) }}
+                </div>
+                <div class="inputWrapper">
+                    {{ form_widget(userForm.email)}}
+                    {{ form_label(userForm.email) }}
+                    {{ form_errors(userForm.email) }}
+                </div>
+                <div class="inputWrapper">
+                    {{ form_widget(userForm.password) }}
+                    {{ form_label(userForm.password) }}
+                    {{ form_errors(userForm.password) }}
+                </div>
+
+                <div class="submit">
+                    {{ form_row(userForm.submit) }}
+                </div>
+            {{ form_end(userForm) }}
+
+
+        </section>
+
+    </main>
+
+
+
+{% endblock %}

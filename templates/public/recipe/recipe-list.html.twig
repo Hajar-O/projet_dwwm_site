@@ -1,5 +1,5 @@
 {% extends 'public/base.html.twig' %}
-
+{% block title %}All Cook : Recettes{% endblock %}
 {% block content %}
     <main id="AllRecipe">
 
@@ -7,6 +7,7 @@
         <section id="imgDefault">
             <div class="imgDefault">
                 <img src="{{ asset('assets/img/bc-home.jpg') }}" alt="">
+                <h2>nos recettes</h2>
             </div>
         </section>
 
@@ -19,7 +20,7 @@
                     <a href="{{ path('recipe',{id:recipe.id}) }}">
                         <article class="recipe">
                             <div class="recipeImg">
-                                <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="">
+                                <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="{{ recipe.title }}">
                             </div>
                             <h3>{{ recipe.title }}</h3>
                         </article>
