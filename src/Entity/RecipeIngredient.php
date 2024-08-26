@@ -28,6 +28,7 @@ class RecipeIngredient
     #[ORM\JoinColumn(nullable: false)]
     private ?Measure $measure = null;
 
+
     public function getId(): ?int
     {
         return $this->id;
