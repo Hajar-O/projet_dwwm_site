@@ -24,12 +24,21 @@
                         <ul class="ulNone">
                             <li><a href="{{ path('recipe-list') }}">Les recettes</a></li>
                             <li><a href="{{ path('recipe-salted') }}">Recettes salées</a></li>
-                            <li><a href="{{ path('recipe-sweet') }}">Recette sucrées</a></li>
+                            <li><a href="{{ path('recipe-sweet') }}">Recettes sucrées</a></li>
                         </ul>
                     </li>
                     <li><a href="">Tutoriel</a></li>
                     <li><a href="">Articles</a></li>
-                    <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                    {% if app.user %}
+                        <li><a href="">Bonjour, {{ app.user.pseudo }}</a>
+                            <ul class="ulNoneConnected">
+                                <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                                <li><a href="{{ path('edit-user') }}">Modification compte</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                    {% endif %}
                     <li>
                         <ul>
                             <li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>

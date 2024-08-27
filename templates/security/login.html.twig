@@ -2,38 +2,47 @@
 
 {% block title %}Log in!{% endblock %}
 
-{% block body %}
     {% block content %}
-         {% block image %}
-            <img src="{{ asset('assets/img/bc-home.jpg') }}" alt="">
-        {% endblock image %}
+<main id="inscriptionForm">
 
+        {% block image %}
+            <section id="imgDefault">
+                <div class="imgDefault">
+                    <img src="{{ asset('assets/img/bc-home.jpg') }}" alt="">
+                </div>
+            </section>
+        {% endblock image %}
         <section class="login">
 
             <h4>Connexion</h4>
 
-            <form method="post">
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
+            <section class="connexion">
+                <form method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
 
-                {% if app.user %}
-                    <div class="mb-3">
+                    {% if app.user %}
+                        <p><a href="{{ path('app_logout') }}">Logout</a></p>
+                        {# <div class="mb-3">
                         You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div> #}
+                    {% endif %}
+
+
+                    <div class="inputWrapper">
+                        <input type="email" value="{{ last_username }}" name="_username" placeholder=" " id="username" class="form-control" autocomplete="email" required autofocus>
+                        <label for="username">Email</label>
                     </div>
-                {% endif %}
+                    <div class="inputWrapper">
+                        <input type="password" name="_password" placeholder=" " id="password" class="form-control" autocomplete="current-password" required>
+                        <label for="password">Password</label>
+                    </div>
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
 
-                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <label for="username">Email</label>
-                <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-                <label for="password">Password</label>
-                <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-
-                <input type="hidden" name="_csrf_token"
-                       value="{{ csrf_token('authenticate') }}"
-                >
-
-                {#
+                    {#
                     Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
                     See https://symfony.com/doc/current/security/remember_me.html
 
@@ -41,14 +50,19 @@
                         <input type="checkbox" name="_remember_me" id="_remember_me">
                         <label for="_remember_me">Remember me</label>
                     </div>
-                #}
+                    #}
 
-                <button class="btn btn-lg btn-primary" type="submit">
-                    Sign in
-                </button>
-            </form>
+                    <div id="buttonSubmit">
+                        <button class="btn btn-lg btn-primary" type="submit">
+                            Sign in
+                        </button>
+                    </div>
+                </form>
+            </section>
 
-            <p><a href="{{ path('add-user') }}">S'insccrire</a></p>
+
+
+            <p><a href="{{ path('add-user') }}">s'inscrire</a></p>
         </section>
+</main>
         {% endblock content %}
-{% endblock %}

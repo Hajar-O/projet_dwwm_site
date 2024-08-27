@@ -31,7 +31,7 @@ header {
       display: flex;
       align-items: center;
     }
-    .ulNone{
+    .ulNone, .ulNoneConnected{
       display: none;
       li{
         margin: 10px;
@@ -45,6 +45,19 @@ header {
       bottom: -94px;
       left: 288px;
     }
+
+    li:hover .ulNoneConnected{
+      display: block;
+      //padding: 10px;
+      background-color: rgba(0, 0, 0, 0.73);
+      position: absolute;
+      bottom: -66px;
+      right: 515px;
+    }
+
+
+
+
   }
 }
 

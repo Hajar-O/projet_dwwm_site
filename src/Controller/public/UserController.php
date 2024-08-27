@@ -48,4 +48,37 @@ class UserController extends AbstractController
         ]);
 
     }
+    #[Route('/user/edit_profil', name: 'edit-user')]
+    public function editAdmin( EntityManagerInterface $entityManager, Request $request, UserPasswordHasherInterface $passwordHasher, $id)
+    {
+        $user = $entityManager->getRepository(User::class)->find($id);
+
+        if (!$user) {
+            throw $this->createNotFoundException('compte non trouvé.');
+        }
+
+        $userForm = $this->createForm(UserType::class, $user);
+        $userForm->handleRequest($request);
+
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+
+            $clearPassword = $userForm->get('password')->getData();
+            if ($clearPassword) {
+                // je hache et mets à J le mdp si modifié
+                $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
+                $user->setPassword($hashedPassword);
+            }
+
+            $user->setRoles(['ROLE_USER']);
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('succes', 'Administarteur mis à jour avec succès !');
+            return $this->redirectToRoute('user_list');
+
+        }
+        return $this->render('public/users/edit-user.html.twig', [
+            'userForm' => $userForm->createView(),
+        ]);
+    }
 }
