@@ -10,7 +10,7 @@ img{
   display: flex;
   flex-direction: column;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.55);
+  background-color: rgba(0, 0, 0, 0.69);
   backdrop-filter: blur(1px);
   padding: 50px;
   font-size: 30px;
@@ -85,16 +85,21 @@ img{
   }
 }
 
-/*----------LIEN-INSCRIPTION----------*/
+/*----------LIEN-CONNEXION----------*/
 p{
   text-align: center;
-  font-size: 18px;
-  text-decoration: underline white;
+  font-size: 15px;
   margin: 10px;
-}
-a{
-  color: white;
   font-family: "monserrat", Sans-Serif;
-  text-transform: none;
 
+
+  a{
+    color: white;
+    font-family: "monserrat", Sans-Serif;
+    text-transform: none;
+    text-decoration: underline white;
+    font-size: 15px;
+
+  }
 }
+

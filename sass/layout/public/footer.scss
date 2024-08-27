@@ -3,6 +3,7 @@ footer{
 
   nav{
     @include display;
+    gap: 40px;
     height: 30vh;
     align-items: center;
       ul{

@@ -9,6 +9,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -40,7 +42,10 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            //return $this->addFlash('succes', 'incription enregistré');
+            $this->addFlash('success', 'Inscription enregistrée');
+
+        return $this->redirectToRoute('app_login'); // Redirection après l'ajout du flash
+
         }
 
         return $this->render('public/users/form-inscription.html.twig', [
@@ -49,7 +54,7 @@ class UserController extends AbstractController
 
     }
     #[Route('/user/edit_profil', name: 'edit-user')]
-    public function editAdmin( EntityManagerInterface $entityManager, Request $request, UserPasswordHasherInterface $passwordHasher, $id)
+    public function editUser( EntityManagerInterface $entityManager, Request $request, UserPasswordHasherInterface $passwordHasher, $id)
     {
         $user = $entityManager->getRepository(User::class)->find($id);
 

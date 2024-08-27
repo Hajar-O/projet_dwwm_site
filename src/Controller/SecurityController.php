@@ -40,11 +40,11 @@ class SecurityController extends AbstractController
         $currentUser = $this->getUser();
 
         if($currentUser ==! null && $this->isGranted(['ROLE_ADMIN'])) {
-            return $this->redirectToRoute('app_admin_dashboard');
+            return $this->redirectToRoute('admin_recipe');
         }
 
         if($currentUser ==! null && $this->isGranted(['ROLE_USER'])) {
-            return $this->redirectToRoute('app_user_dashboard');
+            return $this->redirectToRoute('app_logout');
         }
 
         // get the login error if there is one

@@ -46,7 +46,8 @@ class RecipeType extends AbstractType
                 ],*/
             ])
             ->add('image', FileType::class, [
-                'mapped' => false
+                'mapped' => false,
+                'required' => false,
             ])
             ->add('isPublished', CheckboxType::class, [
                 'label' => 'Published',

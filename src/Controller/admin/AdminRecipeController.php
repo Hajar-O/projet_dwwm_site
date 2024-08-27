@@ -121,6 +121,7 @@ class AdminRecipeController extends AbstractController
     {
 
         $recipe = $recipeRepository->find($id);
+        $existingImage = $recipe->getImage();
         $categoryIng = $categoryIngredientRepository->findAll();
         $recipeUpdateForm = $this->createForm(RecipeType::class, $recipe);
 
@@ -158,6 +159,9 @@ class AdminRecipeController extends AbstractController
                 // je stocke dans la propriété image
                 // de l'entité article le nom du fichier
                 $recipe->setImage($newFilename);
+            } else{
+                // Si aucun fichier n'est uploadé, conserver l'image existante
+                $recipe->setImage($existingImage);
             }
 
             // Supprimer les ingrédients qui ne sont plus présents dans le formulaire

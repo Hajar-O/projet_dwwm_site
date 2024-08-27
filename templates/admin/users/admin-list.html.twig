@@ -10,6 +10,7 @@
             <tr>
                 <td>Nom de l'admin</td>
                 <td>Mail</td>
+                {# <td>Rôle</td> #}
                 <td>Gestion</td>
             </tr>
 
@@ -19,6 +20,7 @@
 
                     <td>{{ user.pseudo }}</td>
                     <td>{{ user.email }}</td>
+                    {# <td>{{ user.roles }}</td> #}
                     <td><p><a href="{{ path('edit-admin', { id: user.id }) }}">Modifier</a></p></td>
 
 

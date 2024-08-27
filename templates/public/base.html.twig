@@ -39,17 +39,24 @@
                     {% else %}
                         <li><a href="{{ path('app_login') }}">Se connecter</a></li>
                     {% endif %}
-                    <li>
-                        <ul>
-                            <li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li><a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a></li>
-                            <li><a href="https://www.tiktok.com/fr/"><i class="fa-brands fa-tiktok"></i></a></li>
-                        </ul>
-                    </li>
+
                 </ul>
+
             </nav>
 
         </header>
+
+    {% for message in app.flashes('success') %}
+        <div class="success_message">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="error_message">
+            {{ message }}
+        </div>
+    {% endfor %}
 
         {% block content %}
             {% block image %}
@@ -63,6 +70,11 @@
                     <li><a href="">BOUTIQUE</a></li>
                     <li><a href="">À PROPOS</a></li>
                     <li><a href="">NOUS CONTACTER</a></li>
+                </ul>
+                <ul>
+                    <li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a></li>
+                    <li><a href="https://www.tiktok.com/fr/"><i class="fa-brands fa-tiktok"></i></a></li>
                 </ul>
             </nav>
         </footer>

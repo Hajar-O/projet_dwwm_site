@@ -15,3 +15,27 @@ a{
   font-weight: lighter;
   text-transform: uppercase;
 }
+.success_message{
+  background-color: rgba(255, 255, 255, 0.61);
+  width: 100%;
+  position: absolute;
+  top: 100px;
+  text-align: center;
+  padding: 10px;
+  font-family: "montserrat", Sans-Serif;
+  font-size: 18px;
+
+}
+.error_message{
+  background-color: rgba(255, 255, 255, 0.61);
+  width: 100%;
+  position: absolute;
+  top: 100px;
+  text-align: center;
+  padding: 10px;
+  font-family: "montserrat", Sans-Serif;
+  font-size: 18px;
+  color: red;
+  font-weight: bolder;
+
+}

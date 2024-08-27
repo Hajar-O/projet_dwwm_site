@@ -25,7 +25,7 @@ header {
 
     ul{
       display: flex;
-      gap: 70px;
+      gap: 80px;
     }
     li{
       display: flex;
@@ -35,6 +35,7 @@ header {
       display: none;
       li{
         margin: 10px;
+        font-size: 14px;
       }
     }
     li:hover .ulNone{
@@ -42,8 +43,8 @@ header {
       //padding: 10px;
       background-color: rgba(0, 0, 0, 0.73);
       position: absolute;
-      bottom: -94px;
-      left: 288px;
+      bottom: -88px;
+      left: 410px;
     }
 
     li:hover .ulNoneConnected{
@@ -51,8 +52,8 @@ header {
       //padding: 10px;
       background-color: rgba(0, 0, 0, 0.73);
       position: absolute;
-      bottom: -66px;
-      right: 515px;
+      bottom: -62px;
+      right: 376px;
     }
 
 
