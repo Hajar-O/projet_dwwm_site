@@ -34,7 +34,9 @@ header{
     border-radius: 5px;
     padding: 10px;
     margin-top: 20px;
-
+ .widthTD{
+     width: 22%;
+ }
 
 }
 
@@ -46,5 +48,23 @@ header{
     img{
         width: 100%;
     }
-    width: 10%;
+    width: 50%;
+}
+
+/*---------------alert-delete--JS----------*/
+.jsDelete{
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: rgba(0, 0, 0, 0.8) solid 2px;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 100px
+}
+.jsDeleteButton{
+    color: rgba(0, 0, 0, 0.8);
+    &&:hover{
+        text-decoration: underline;
+    }
 }

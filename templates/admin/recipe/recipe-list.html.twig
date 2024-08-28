@@ -25,14 +25,19 @@
 
                         <tr>
                             <td><p>{{ recipe.id }}</p></td>
-                            <td><h4>{{ recipe.title }}</h4></td>
-                             <td><div class="imgList">
+                            <td class="widthTD"><h4>{{ recipe.title }}</h4></td>
+                             <td class="widthTD"><div class="imgList">
                                      <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="">
                                  </div></td>
-                            <td>{{ recipe.publishedAt | date('d/m/y') }}</td>
-                            <td>
+                            <td class="widthTD">{{ recipe.publishedAt | date('d/m/y') }}</td>
+                            <td class="widthTD">
                                 <p><a href="{{ path('admin_recipe_edit', {id: recipe.id}) }}">Modifier</a></p>
-                                <p><a href="{{ path('admin_recipe_delete',{id: recipe.id}) }}">Supprimer</a></p>
+                                 <p class="jsDeleteButton">Supprimer</p>
+                                <div class="jsDelete">
+                                    <p>Voulez vous vraiment supprimer l'article ?</p>
+                                    <p><a href="{{ path('admin_recipe_delete',{id: recipe.id}) }}">Supprimer</a></p>
+                                </div>
+
                             </td>
                         </tr>
                 {% endfor %}
