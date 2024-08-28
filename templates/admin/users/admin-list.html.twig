@@ -1,35 +1,47 @@
 {% extends 'admin/base.admin.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
+{% endblock %}
 {% block content %}
+    <h3>liste des Administrateurs</h3>
+    <button><a href="{{ path('add-admin') }}">Add an admin</a></button>
+    <section class="tableCenter">
 
-    <section>
-        <h3>liste des Administrateurs</h3>
-        <button><a href="{{ path('add-admin') }}">Add an admin</a></button>
 
-        <table>
-            <tr>
-                <td>Nom de l'admin</td>
-                <td>Mail</td>
-                {# <td>Rôle</td> #}
-                <td>Gestion</td>
-            </tr>
-
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <td>Nom de l'admin</td>
+                    <td>Mail</td>
+                    {# <td>Rôle</td> #}
+                    <td>Gestion</td>
+                </tr>
+            </thead>
+            <tbody>
             {% for user in users %}
-
-            <tr>
-
+                <tr>
                     <td>{{ user.pseudo }}</td>
                     <td>{{ user.email }}</td>
                     {# <td>{{ user.roles }}</td> #}
                     <td><p><a href="{{ path('edit-admin', { id: user.id }) }}">Modifier</a></p></td>
 
-
-            </tr>
-
+                </tr>
             {% endfor %}
+            </tbody>
+
+
+
+
+
+
 
 
         </table>
     </section>
+
+{% endblock %}
+{% block javascript %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
 
 {% endblock %}

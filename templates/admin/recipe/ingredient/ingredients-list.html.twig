@@ -9,27 +9,32 @@
     <h1>Liste des ingrédients disponibles.</h1>
 
     <button><a href="{{ path('admin_ingredients_add') }}">Ajouter un ingredient</a></button>
-    <table id="myTable">
-        <thead>
-            <tr>
-                <td>Nom</td>
-                <td>Gérer</td>
-            </tr>
-        </thead>
-        {% for ingredient in ingredients %}
-            <tbody>
+    <section class="tableCenter">
 
-                   <tr>
-                       <td> <p>{{ ingredient.ingredient }}</p></td>
-                       <td><p><a href="{{ path('admin_ingredients_delete',{id: ingredient.id}) }}">Supprimer l'ingrédient</a></p>
-                           <p><a href="{{ path('admin_ingredients_update',{id: ingredient.id}) }}">Modifier l'ingrédient</a></p>
-                       </td>
 
-                   </tr>
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <td>Nom</td>
+                    <td>Gérer</td>
+                </tr>
+            </thead>
+            {% for ingredient in ingredients %}
+                <tbody>
 
-            </tbody>
-        {% endfor %}
-    </table>
+                       <tr>
+                           <td> <p>{{ ingredient.ingredient }}</p></td>
+                           <td><p><a href="{{ path('admin_ingredients_delete',{id: ingredient.id}) }}">Supprimer l'ingrédient</a></p>
+                               <p><a href="{{ path('admin_ingredients_update',{id: ingredient.id}) }}">Modifier l'ingrédient</a></p>
+                           </td>
+
+                       </tr>
+
+                </tbody>
+            {% endfor %}
+        </table>
+
+    </section>
 {% endblock %}
 {% block javascript %}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

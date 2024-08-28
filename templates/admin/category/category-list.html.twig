@@ -1,17 +1,36 @@
 {% extends 'admin/base.admin.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
+{% endblock %}
 {% block content %}
 
-    <section>
-        {% for categorie in categories %}
+    <section class="tableCenter">
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <td>Categorie</td>
+                    <td>Gérer</td>
+                </tr>
+            </thead>
 
-            <div>
-                <h3>{{ categorie.type }}</h3>
-                <p><a href="{{ path('admin_category_delete',{id: categorie.id}) }}">Supprimer</a></p>
-                <p><a href="{{ path('admin_category_update',{id: categorie.id}) }}">Modifer</a></p>
-            </div>
+            <tbody>
+            {% for categorie in categories %}
+                <tr>
+                    <td><h3>{{ categorie.type }}</h3></td>
+                    <td>
+                        <p><a href="{{ path('admin_category_delete',{id: categorie.id}) }}">Supprimer</a></p>
+                        <p><a href="{{ path('admin_category_update',{id: categorie.id}) }}">Modifer</a></p>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
 
-        {% endfor %}
     </section>
+{% endblock %}
+{% block javascript %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
+
 {% endblock %}

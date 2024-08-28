@@ -20,10 +20,15 @@
             <li><a href="{{ path('admin_list') }}">GÉRER LES ADMINS</a></li>
             <li>GÉRER TUTORIELS</li>
             <li>GÉRER ARTICLES</li>
-            <li><a href="{{ path('app_logout') }}">SE DÉCONNECTER</a></li>
+
+            {% if app.user %}
+                <li><a href="{{ path('app_logout') }}">SE DÉCONNECTER</a></li>
+                <li><p>Bonjour, {{ app.user.pseudo }}</a></p>
+            {% endif %}
         </ul>
     </nav>
 </header>
+
 {#
 vérifie si des messages flashes ont été enregistrés
 par un controleur. Si oui, on les affiche

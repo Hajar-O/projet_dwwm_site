@@ -6,8 +6,8 @@
     <main>
         <h1>Liste  des recettes</h1>
         <button><a href="{{ path('admin_recipe_add') }}">Ajouter une recette</a></button>
-        <button><a href="{{ path('admin_category') }}">gerer les categories</a></button>
-        <button><a href="{{ path('admin_ingredients') }}">Gerer les ingrédients</a></button>
+        <button><a href="{{ path('admin_category') }}">Gérer les categories</a></button>
+        <button><a href="{{ path('admin_ingredients') }}">Gérer les ingrédients</a></button>
         <section class="tableCenter">
 
             <table id="myTable">
@@ -15,25 +15,29 @@
                     <tr>
                         <td>ID</td>
                         <td>Titre</td>
-                        {# <td>Image</td> #}
+                         <td>Image</td>
                         <td>Date publication</td>
                         <td>Modification</td>
                     </tr>
                 </thead>
-                {% for recipe in recipes %}
                     <tbody>
+                    {% for recipe in recipes %}
+
                         <tr>
                             <td><p>{{ recipe.id }}</p></td>
-                            <td><h2>{{ recipe.title }}</h2></td>
-                            {# <td><img src="{{ asset('assets/uploads/'~recipe.image) }}" alt=""></td> #}
+                            <td><h4>{{ recipe.title }}</h4></td>
+                             <td><div class="imgList">
+                                     <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="">
+                                 </div></td>
                             <td>{{ recipe.publishedAt | date('d/m/y') }}</td>
                             <td>
                                 <p><a href="{{ path('admin_recipe_edit', {id: recipe.id}) }}">Modifier</a></p>
                                 <p><a href="{{ path('admin_recipe_delete',{id: recipe.id}) }}">Supprimer</a></p>
                             </td>
                         </tr>
-                    </tbody>
                 {% endfor %}
+
+                    </tbody>
             </table>
         </section>
     </main>
