@@ -3,6 +3,7 @@
 namespace App\Controller\public;
 // On appelle le namespace des class utilisées afin que Symfony fasse le require de ces dernières.
 
+use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -10,7 +11,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController{
     #[Route('/', name: 'home')]
-    public function index(){
-        return $this->render('public/home.html.twig');
+    public function findAllrecipe(RecipeRepository $recipeRepository){
+        $recipes = $recipeRepository->findAll();
+        $randomRecipe = [];
+
+        if (!empty($recipes)) {
+            $randomRecipe = array_rand($recipes, min(4, count($recipes)));
+            $randomRecipe = array_map(fn($key) => $recipes[$key], $randomRecipe);
+        }
+        return $this->render('public/home.html.twig',[
+            'recipes' => $recipes,
+            'randomRecipes' => $randomRecipe
+        ]);
     }
 }

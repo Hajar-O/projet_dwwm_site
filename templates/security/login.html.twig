@@ -21,15 +21,16 @@
             <section class="connexion">
                 <form method="post">
                     {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        <p>L'email ou le mot de passe semble incorrect.</p>
+                       {#  <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div> #}
                     {% endif %}
 
-                    {% if app.user %}
+                    {#{% if app.user %}
                         <p><a href="{{ path('app_logout') }}">Logout</a></p>
-                        {# <div class="mb-3">
+                         <div class="mb-3">
                         You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-                    </div> #}
-                    {% endif %}
+                    </div>
+                    {% endif %}#}
 
 
                     <div class="inputWrapper">

@@ -2,6 +2,8 @@
 @import "abstract/mixin";
 @import "general";
 @import "layout/public/header";
+@import "layout/admin/mains/all-list-admin";
+@import "layout/public/mains/home/main-home";
 @import "layout/public/mains/recipe/mainAllRecipe";
 @import "layout/public/mains/recipe/mainOneRecipe";
 @import "layout/public/mains/recipe/mainList_2";
@@ -9,4 +11,5 @@
 @import "layout/public/mains/connection/main_form_inscription";
 @import "layout/public/mains/connection/main_form_login";
 @import "layout/public/footer";
+
 

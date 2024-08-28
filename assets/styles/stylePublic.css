@@ -1,7 +1,10 @@
 body {
-    background-color: #a4b7a0;
+    background-color: #ffffff;
 }
-form{
-    width: 65%;
+
+/*--------------------List Recettes--------------------*/
+.tableCenter{
+    width: 90%;
     margin: auto;
+    border: 1px solid grey;
 }

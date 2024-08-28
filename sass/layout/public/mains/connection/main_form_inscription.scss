@@ -50,6 +50,7 @@
         width: 100%;
         margin: 20px;
         border-bottom: solid white 1px;
+        //font-size: 16px;
     }
     input:not(:placeholder-shown) + label, input:focus + label{
       transform: translateY(-30px);

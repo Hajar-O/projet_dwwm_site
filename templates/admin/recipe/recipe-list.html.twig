@@ -1,30 +1,45 @@
 {% extends 'admin/base.admin.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
+{% endblock %}
 {% block content %}
-    <h1>Liste  des recettes</h1>
-    <button><a href="{{ path('admin_recipe_add') }}">Ajouter une recette</a></button>
-    <button><a href="{{ path('admin_category') }}">gerer les categories</a></button>
-    <button><a href="{{ path('admin_ingredients') }}">Gerer les ingrédients</a></button>
-    <table>
-            <tr>
-                <td>ID</td>
-                <td>Titre</td>
-                {# <td>Image</td> #}
-                <td>Date publication</td>
-                <td>Modification</td>
-            </tr>
+    <main>
+        <h1>Liste  des recettes</h1>
+        <button><a href="{{ path('admin_recipe_add') }}">Ajouter une recette</a></button>
+        <button><a href="{{ path('admin_category') }}">gerer les categories</a></button>
+        <button><a href="{{ path('admin_ingredients') }}">Gerer les ingrédients</a></button>
+        <section class="tableCenter">
 
-        {% for recipe in recipes %}
-            <tr>
-                <td><p>{{ recipe.id }}</p></td>
-                <td><h2>{{ recipe.title }}</h2></td>
-               {# <td><img src="{{ asset('assets/uploads/'~recipe.image) }}" alt=""></td> #}
-                <td>{{ recipe.publishedAt | date('d/m/y') }}</td>
-                <td>
-                    <p><a href="{{ path('admin_recipe_edit', {id: recipe.id}) }}">Modifier</a></p>
-                    <p><a href="{{ path('admin_recipe_delete',{id: recipe.id}) }}">Supprimer</a></p>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+            <table id="myTable">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Titre</td>
+                        {# <td>Image</td> #}
+                        <td>Date publication</td>
+                        <td>Modification</td>
+                    </tr>
+                </thead>
+                {% for recipe in recipes %}
+                    <tbody>
+                        <tr>
+                            <td><p>{{ recipe.id }}</p></td>
+                            <td><h2>{{ recipe.title }}</h2></td>
+                            {# <td><img src="{{ asset('assets/uploads/'~recipe.image) }}" alt=""></td> #}
+                            <td>{{ recipe.publishedAt | date('d/m/y') }}</td>
+                            <td>
+                                <p><a href="{{ path('admin_recipe_edit', {id: recipe.id}) }}">Modifier</a></p>
+                                <p><a href="{{ path('admin_recipe_delete',{id: recipe.id}) }}">Supprimer</a></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+        </section>
+    </main>
+{% endblock %}
+{% block javascript %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
+
 {% endblock %}

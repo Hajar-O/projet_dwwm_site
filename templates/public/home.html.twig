@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <main>
+    <main id="home">
         {% block image %}
             <section id="imgDefault">
                 <div class="imgDefault">
@@ -12,7 +12,46 @@
             </section>
         {% endblock image %}
 
-        <h1>HOME</h1>
+        <h2>choisir un titre </h2>
+            <section class="carousel">
+                {% if randomRecipes is not empty %}
+                <div class="owl-carousel owl-theme">
+                    {% for recipe in randomRecipes %}
+                        <a href="{{ path('recipe',{id:recipe.id}) }}">
+                            <div class="item eachImg">
+                                <img src="{{ asset('assets/uploads/'~recipe.image) }}" alt="">
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </section>
     </main>
 
 {% endblock content %}
+
+{% block javascript %}
+<script src="{{ asset('assets/js/owl.carousel.js') }}"></script>
+<script>
+
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:25,
+        nav:true,
+        autoplay:true,
+        autoplayTimeout:2000,
+        autoplayHoverPause:true,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:3
+            },
+            1000:{
+                items:3
+            }
+        }
+    })
+</script>
+{% endblock %}
