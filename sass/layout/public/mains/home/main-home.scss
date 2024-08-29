@@ -25,6 +25,7 @@
     .lastRecipeImg{
       height: 70vh;
       position: relative;
+      filter: blur(1px);
       img{
         width: 100%;
 

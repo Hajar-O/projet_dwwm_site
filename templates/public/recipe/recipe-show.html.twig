@@ -17,7 +17,7 @@
 
         <article>
 
-            <section>
+            <section class="recette">
 
                 <div class="ingredient">
                     <h4>Ingrédients</h4>
@@ -51,13 +51,22 @@
             <p>Publié le : {{ recipe.publishedAt | date('d/m/y') }}</p>
         </article>
 
-        <section>
+        <section class="myReviews">
             {% if app.user %}
-                <div class="formReview">
-                    {{ form_start(reviewsForm) }}
-                    {{ form_row(reviewsForm.text, {'label': false}) }}
-                    {{ form_end(reviewsForm) }}
-                </div>
+
+                    <div class="imgReviews">
+                        <div class="formReview">
+                            <p>qu'as-tu pensé de la recette ?</p>
+                            {{ form_start(reviewsForm) }}
+                            {{ form_row(reviewsForm.text, {'label': false}) }}
+                            {{ form_end(reviewsForm) }}
+                        </div>
+                         <img class="imgBlur" src="{{ asset('assets/uploads/'~recipe.image) }}" alt="Image {{ recipe.title }}">
+
+                    </div>
+
+
+
             {% else %}
             {% endif %}
         </section>

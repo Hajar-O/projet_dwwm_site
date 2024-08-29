@@ -43,7 +43,7 @@
       width: 90%;
     }
   }
-  section{
+  .recette{
     @include display;
     gap: 40px;
     width: 90%;
@@ -73,8 +73,60 @@
   }
 
   /*------------------FORMULAIRE---REVIEWS----------------*/
+  .myReviews{
+    z-index: 500;
+    position: relative;
+    #test{
+      width: 70%;
+      height: 40vh;
+      margin: auto;
+    }
+
+    .imgReviews{
+      height: 50vh;
+      z-index: 200;
+
+        .imgBlur{
+        filter: blur(4px);
+        }
+
+      img{
+        width: 100%;
+       // position: relative;
+      }
+    }
+  }
   .formReview{
-    
+    z-index: 1000;
+    //height: 70vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.57);
+    padding: 50px;
+    margin: auto;
+    width: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    p{
+      color: whitesmoke;
+      text-transform: uppercase;
+      font-family: "monsereat",Sans-Serif;
+      font-size: 20px;
+      font-weight: 200;
+      margin-bottom: 30px;
+    }
+
+    .reviewArea{
+      background-color: rgba(255, 255, 255, 0);
+      width: 100%;  /* Assurez-vous que le textarea prend toute la largeur disponible */
+      height: 150px; /* Définissez la hauteur */
+      padding: 10px; /* Ajoutez de l'espacement à l'intérieur */
+      border: 2px solid #ccc; /* Définissez une bordure */
+
+
+    }
+
   }
 
 
