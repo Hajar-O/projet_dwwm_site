@@ -7,8 +7,10 @@
 {% block content %}
 
     <h3>Liste des ingrédients disponibles.</h3>
-
-    <button><a href="{{ path('admin_ingredients_add') }}">Ajouter un ingredient</a></button>
+    <div class="buttonGestion">
+        <button><a href="{{ path('admin_ingredients_add') }}">Ajouter un ingredient</a></button>
+        <button><a href="{{ path('admin_measure') }}">Gérer les mesures</a></button>
+    </div>
     <section class="tableCenter">
 
 
@@ -28,8 +30,11 @@
                                <p><a href="{{ path('admin_ingredients_update',{id: ingredient.id}) }}"><i class="fa-solid fa-pen"></i></a></p>
                                <p class="jsDeleteButton"><i class="fa-solid fa-trash-can"></i></p>
                                <div class="jsDelete">
-                                   <p>Voulez vous vraiment supprimer l'ingrédient ?</p>
-                                   <p><a href="{{ path('admin_ingredients_delete',{id: ingredient.id}) }}">Supprimer</a></p>
+                                   <h4>Voulez vous vraiment supprimer l'ingrédient ?</h4>
+                                   <div class="flexButton">
+                                       <p><a href="{{ path('admin_ingredients_delete',{id: ingredient.id}) }}">Supprimer</a></p>
+                                       <p><a href="{{ path('admin_ingredients') }}">Annuler</a></p>
+                                   </div>
                                </div>
                            </td>
 

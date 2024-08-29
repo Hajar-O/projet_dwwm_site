@@ -3,8 +3,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
 {% endblock %}
 {% block content %}
-    <h3>liste des Administrateurs</h3>
-    <button><a href="{{ path('add-admin') }}">Add an admin</a></button>
+    <h3>Liste des Administrateurs</h3>
+    <div class="buttonGestion">
+        <button><a href="{{ path('add-admin') }}">Add an admin</a></button>
+    </div>
     <section class="tableCenter">
 
 

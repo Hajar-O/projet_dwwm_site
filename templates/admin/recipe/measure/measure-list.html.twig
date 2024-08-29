@@ -1,0 +1,48 @@
+{% extends 'admin/base.admin.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
+{% endblock %}
+{% block content %}
+    <main>
+        <h3>Liste des mesures</h3>
+        <div class="buttonGestion">
+            <button><a href="{{ path('admin_measure_add') }}">Ajouter une mesure</a></button>
+        </div>
+
+        <section class="tableCenter">
+            <table id="myTable">
+                <thead>
+                <tr>
+                    <td> Nom </td>
+                    <td>Gestion </td>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for measure in measures %}
+                        <tr>
+                            <td><h3>{{ measure.name }}</h3></td>
+                            <td>
+                                <p><a href="{{ path('admin_measure_update', {id: measure.id}) }}"><i class="fa-solid fa-pen"</a></p>
+                                <p class="jsDeleteButton"><i class="fa-solid fa-trash-can"></i></p>
+                                <div class="jsDelete">
+                                    <h4>Voulez vous vraiment supprimer la meusure ?</h4>
+                                    <div class="flexButton">
+                                        <p><a href="{{ path('admin_measure_delete',{id: measure.id}) }}">Supprimer</a></p>
+                                        <p><a href="{{ path('admin_measure') }}">Annuler</a></p>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </section>
+    </main>
+{% endblock %}
+{% block javascript %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
+
+{% endblock %}

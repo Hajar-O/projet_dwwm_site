@@ -5,7 +5,9 @@
 {% block content %}
 <main>
     <h3>Liste des catégories</h3>
-    <button class="addButton"><a href="{{ path('admin_category_add') }}"><i class="fa-regular fa-plus"></i></a></button>
+    <div class="buttonGestion">
+        <button class="addButton"><a href="{{ path('admin_category_add') }}">Ajouter une categorie</a></button>
+    </div>
     <section class="tableCenter">
         <table id="myTable">
             <thead>
@@ -23,8 +25,11 @@
                         <p><a href="{{ path('admin_category_update',{id: categorie.id}) }}"><i class="fa-solid fa-pen"></i></a></p>
                         <p class="jsDeleteButton"><i class="fa-solid fa-trash-can"></i></p>
                         <div class="jsDelete">
-                            <p>Voulez vous vraiment supprimer l'ingrédient ?</p>
-                            <p><a href="{{ path('admin_category_delete',{id: categorie.id}) }}">Supprimer</a></p>
+                            <h4>Voulez vous vraiment supprimer l'ingrédient ?</h4>
+                            <div class="flexButton">
+                                <p><a href="{{ path('admin_category_delete',{id: categorie.id}) }}">Supprimer</a></p>
+                                <p><a href="{{ path('admin_category') }}">Annuler</a></p>
+                            </div>
                         </div>
                     </td>
                 </tr>

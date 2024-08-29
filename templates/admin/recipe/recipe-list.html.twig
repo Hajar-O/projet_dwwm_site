@@ -5,9 +5,11 @@
 {% block content %}
     <main>
         <h3>Liste  des recettes</h3>
-        <button><a href="{{ path('admin_recipe_add') }}">Ajouter une recette</a></button>
-        <button><a href="{{ path('admin_category') }}">Gérer les categories</a></button>
-        <button><a href="{{ path('admin_ingredients') }}">Gérer les ingrédients</a></button>
+        <section class="buttonGestion">
+            <button><a href="{{ path('admin_recipe_add') }}">Ajouter une recette</a></button>
+            <button><a href="{{ path('admin_category') }}">Gérer les categories</a></button>
+            <button><a href="{{ path('admin_ingredients') }}">Gérer les ingrédients</a></button>
+        </section>
         <section class="tableCenter">
 
             <table id="myTable">
@@ -34,8 +36,12 @@
                                 <p><a href="{{ path('admin_recipe_edit', {id: recipe.id}) }}"><i class="fa-solid fa-pen"></i></a></p>
                                  <p class="jsDeleteButton"><i class="fa-solid fa-trash-can"></i></p>
                                 <div class="jsDelete">
-                                    <p>Voulez vous vraiment supprimer l'article ?</p>
-                                    <p><a href="{{ path('admin_recipe_delete',{id: recipe.id}) }}">Supprimer</a></p>
+                                    <h4>Voulez vous vraiment supprimer la recette ?</h4>
+                                    <div class="flexButton">
+                                        <p><a href="{{ path('admin_recipe_delete',{id: recipe.id}) }}">Supprimer</a></p>
+                                        <p><a href="{{ path('admin_recipe') }}">Annuler</a></p>
+                                    </div>
+
                                 </div>
 
                             </td>
