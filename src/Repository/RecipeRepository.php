@@ -51,4 +51,13 @@ class RecipeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function getlastRecipe(){
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.publishedAt', 'DESC')  // Tri par date de création décroissante
+            ->setMaxResults(1)  // Limite le résultat à une seule recette
+            ->getQuery()
+            ->getOneOrNullResult();  // Retourne la dernière recette ou null s'il n'y a pas de résultats
+
+    }
+
 }

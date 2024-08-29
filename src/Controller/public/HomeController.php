@@ -13,6 +13,8 @@ class HomeController extends AbstractController{
     #[Route('/', name: 'home')]
     public function findAllrecipe(RecipeRepository $recipeRepository){
         $recipes = $recipeRepository->findAll();
+        $getLastRecipe = $recipeRepository->getLastRecipe();
+
         $randomRecipe = [];
 
         if (!empty($recipes)) {
@@ -21,7 +23,10 @@ class HomeController extends AbstractController{
         }
         return $this->render('public/home.html.twig',[
             'recipes' => $recipes,
+            'lastRecipe' => $getLastRecipe,
             'randomRecipes' => $randomRecipe
         ]);
     }
+
+
 }
