@@ -51,6 +51,28 @@
             <p>Publié le : {{ recipe.publishedAt | date('d/m/y') }}</p>
         </article>
 
+        <section>
+            {% if app.user %}
+                <div class="formReview">
+                    {{ form_start(reviewsForm) }}
+                    {{ form_row(reviewsForm.text, {'label': false}) }}
+                    {{ form_end(reviewsForm) }}
+                </div>
+            {% else %}
+            {% endif %}
+        </section>
+        <section>
+            {% if reviews is not empty %}
+                {% for review in reviews %}
+                    <p>{{ review.user.pseudo }}</p>
+                    <p>le : {{ review.createdAt |date('d/m/Y H:i') }}</p>
+                    <p>{{ review.text }}</p>
+                {% endfor %}
+            {% else %}
+                <p>Aucun avis pour le moment...</p>
+            {% endif %}
+        </section>
+
     </main>
 
 {% endblock content %}
