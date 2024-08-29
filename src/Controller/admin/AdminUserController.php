@@ -31,7 +31,7 @@ class AdminUserController extends AbstractController
 
         if ($adminForm->isSubmitted() && $adminForm->isValid()) {
 
-            $clearPassword = $admin->getPassword(); //je récupère le mot de passe en clair
+            $clearPassword = $adminForm->get('password')->getData(); //je récupère le mot de passe en clair
             $hashedPassword = $passwordHasher->hashPassword($admin, $clearPassword); // je hache le mdp
             $admin->setPassword($hashedPassword); // j'associe et enregistre le mdp à l'admin
 
