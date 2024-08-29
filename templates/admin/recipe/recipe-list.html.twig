@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
     <main>
-        <h1>Liste  des recettes</h1>
+        <h3>Liste  des recettes</h3>
         <button><a href="{{ path('admin_recipe_add') }}">Ajouter une recette</a></button>
         <button><a href="{{ path('admin_category') }}">Gérer les categories</a></button>
         <button><a href="{{ path('admin_ingredients') }}">Gérer les ingrédients</a></button>
@@ -31,8 +31,8 @@
                                  </div></td>
                             <td class="widthTD">{{ recipe.publishedAt | date('d/m/y') }}</td>
                             <td class="widthTD">
-                                <p><a href="{{ path('admin_recipe_edit', {id: recipe.id}) }}">Modifier</a></p>
-                                 <p class="jsDeleteButton">Supprimer</p>
+                                <p><a href="{{ path('admin_recipe_edit', {id: recipe.id}) }}"><i class="fa-solid fa-pen"></i></a></p>
+                                 <p class="jsDeleteButton"><i class="fa-solid fa-trash-can"></i></p>
                                 <div class="jsDelete">
                                     <p>Voulez vous vraiment supprimer l'article ?</p>
                                     <p><a href="{{ path('admin_recipe_delete',{id: recipe.id}) }}">Supprimer</a></p>

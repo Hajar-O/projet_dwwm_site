@@ -17,7 +17,10 @@ header{
         justify-content: center;
         height: 65px;
         align-items: center;
-        background-color: #3b3838;
+        background-color: #565353;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        box-shadow:3px 2px 2px #7c7575;
 
         ul{
             display: flex;
@@ -26,7 +29,19 @@ header{
         }
     }
 }
+/*-----------Button---ADD--------------------*/
+.addButton{
+    all: unset;
+    background-color: #639f63;
+    width: 4%;
+    height: 7vh;
+    text-align: center;
+    border-radius: 50px;
+    color: white;
+    margin: auto;
+}
 /*--------------------Lists--------------------*/
+
 .tableCenter {
     width: 90%;
     margin: auto;
@@ -41,7 +56,7 @@ header{
 }
 
 .tableCenter tbody tr:nth-of-type(even) {
-    background-color: rgba(157, 153, 153, 0.8)!important; /* Pas besoin de !important sauf si nécessaire */
+    background-color: rgba(157, 153, 153, 0.8)!important;
 }
 /*---------------list---recipe----------*/
 .imgList{
@@ -67,4 +82,36 @@ header{
     &&:hover{
         text-decoration: underline;
     }
+}
+/*----------------Fomulaire Update-------------*/
+.fomulaireEdit{
+    width: 80%;
+    margin: 30px auto 30px;
+    border-radius: 10px;
+    background-color: #9f9a9a;
+    padding: 15px;
+}
+/*------------MESSAGE---FLASH------------------*/
+.success_message{
+    background-color: rgb(58, 82, 49);
+    width: 100%;
+    position: absolute;
+    top: 68px;
+    text-align: center;
+    padding: 10px;
+    font-family: "montserrat", Sans-Serif;
+    font-size: 18px;
+
+}
+.error_message{
+    background-color: rgba(255, 255, 255, 0.61);
+    width: 100%;
+    position: absolute;
+    top: 68px;
+    text-align: center;
+    padding: 10px;
+    font-family: "montserrat", Sans-Serif;
+    font-size: 18px;
+    color: red;
+    font-weight: bolder;
 }

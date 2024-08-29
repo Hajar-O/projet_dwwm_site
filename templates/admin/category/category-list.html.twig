@@ -3,14 +3,16 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
 {% endblock %}
 {% block content %}
-
+<main>
+    <h3>Liste des catégories</h3>
+    <button class="addButton"><a href="{{ path('admin_category_add') }}"><i class="fa-regular fa-plus"></i></a></button>
     <section class="tableCenter">
         <table id="myTable">
             <thead>
-                <tr>
-                    <td>Categorie</td>
-                    <td>Gérer</td>
-                </tr>
+            <tr>
+                <td>Categorie</td>
+                <td>Gérer</td>
+            </tr>
             </thead>
 
             <tbody>
@@ -18,8 +20,12 @@
                 <tr>
                     <td><h3>{{ categorie.type }}</h3></td>
                     <td>
-                        <p><a href="{{ path('admin_category_delete',{id: categorie.id}) }}">Supprimer</a></p>
-                        <p><a href="{{ path('admin_category_update',{id: categorie.id}) }}">Modifer</a></p>
+                        <p><a href="{{ path('admin_category_update',{id: categorie.id}) }}"><i class="fa-solid fa-pen"></i></a></p>
+                        <p class="jsDeleteButton"><i class="fa-solid fa-trash-can"></i></p>
+                        <div class="jsDelete">
+                            <p>Voulez vous vraiment supprimer l'ingrédient ?</p>
+                            <p><a href="{{ path('admin_category_delete',{id: categorie.id}) }}">Supprimer</a></p>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
@@ -28,7 +34,10 @@
 
 
     </section>
-{% endblock %}
+</main>
+    {% endblock %}
+
+
 {% block javascript %}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>

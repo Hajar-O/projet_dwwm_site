@@ -31,7 +31,7 @@ class AdminCategoryController extends AbstractController{
            $entityManager->remove($category);
            $entityManager->flush();
 
-           $this->addFlash('success', 'La categorie à bien été supprimer');
+           $this->addFlash('success', 'La categorie à bien été supprimé');
        } catch (\Exception $e){
            $this->addFlash('error', 'Une erreur est survenue lors de la suppression');
        }

@@ -2,13 +2,14 @@
 
 {% block content %}
 
-    <section>
 
-        {{ form_start(categoryUpdateForm) }}
+        <section class="fomulaireEdit">
+            {{ form_start(categoryUpdateForm) }}
 
-            {{ form_row(categoryUpdateForm.type) }}
+                {{ form_row(categoryUpdateForm.type) }}
 
-        {{ form_end(categoryUpdateForm) }}
-    </section>
+            {{ form_end(categoryUpdateForm) }}
+        </section>
+
 
 {% endblock %}

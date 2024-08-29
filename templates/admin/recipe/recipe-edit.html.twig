@@ -3,26 +3,29 @@
 {% block content %}
 
     <main>
-        {{ form_start(recipeForm) }}
+        <section class="fomulaireEdit">
+            {{ form_start(recipeForm) }}
 
-        {{ form_row(recipeForm.title) }}
-        {{ form_row(recipeForm.image) }}
-        {{ form_row(recipeForm.idCategory) }}
+            {{ form_row(recipeForm.title) }}
+            {{ form_row(recipeForm.image) }}
+            {{ form_row(recipeForm.idCategory) }}
 
-        <ul class="recipeIngredients"
-            data-index="{{ recipeForm.recipeIngredients|length > 0 ? recipeForm.recipeIngredients|last.vars.name + 1 : 0 }}"
-            data-prototype="{{ form_widget(recipeForm.recipeIngredients.vars.prototype)|e('html_attr') }}">
+            <ul class="recipeIngredients"
+                data-index="{{ recipeForm.recipeIngredients|length > 0 ? recipeForm.recipeIngredients|last.vars.name + 1 : 0 }}"
+                data-prototype="{{ form_widget(recipeForm.recipeIngredients.vars.prototype)|e('html_attr') }}">
 
-            {% for ingredient in recipeForm.recipeIngredients %}
-                <li>
-                    {{ form_row(ingredient) }}
-                    <button type="button" class="btn-remove-ingredient">Remove</button>
-                </li>
-            {% endfor %}
-        </ul>
-        <button type="button" class="add_item_link" data-collection-holder-class="recipeIngredients">Add an ingredient</button>
+                {% for ingredient in recipeForm.recipeIngredients %}
+                    <li>
+                        {{ form_row(ingredient) }}
+                        <button type="button" class="btn-remove-ingredient">Remove</button>
+                    </li>
+                {% endfor %}
+            </ul>
+            <button type="button" class="add_item_link" data-collection-holder-class="recipeIngredients">Add an ingredient</button>
 
-        {{ form_end(recipeForm) }}
+            {{ form_end(recipeForm) }}
+        </section>
+
     </main>
 
     {% block javascriptEnd %}

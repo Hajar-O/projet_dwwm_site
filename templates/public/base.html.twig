@@ -35,7 +35,7 @@
                     <li><a href="">Tutoriel</a></li>
                     <li><a href="">Articles</a></li>
                     {% if app.user %}
-                        <li><a href="">Bonjour, {{ app.user.pseudo }}</a>
+                        <li><a href=""> <i class="fa-solid fa-user"> </i> {{ app.user.pseudo }}</a>
                             <ul class="ulNoneConnected">
                                 <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
                                 <li><a href="{{ path('edit-user') }}">Modification compte</a></li>

@@ -2,6 +2,7 @@
 
 {% block content %}
  <main>
+     <section class="fomulaireEdit">
      {{ form_start(recipeForm) }}
 
          {{ form_row(recipeForm.title) }}
@@ -17,6 +18,7 @@
       <button type="button" class="add_item_link" data-collection-holder-class="recipeIngredients">Add an ingredient</button>
 
       {{ form_end(recipeForm) }}
+     </section>
  </main>
 
 {% endblock %}

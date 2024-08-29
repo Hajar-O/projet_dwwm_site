@@ -2,14 +2,16 @@
 
 {% block content %}
 
-    <section class="formIngre">
-        {{ form_start(ingredientsForm) }}
+    <main>
+        <section class="fomulaireEdit">
+            {{ form_start(ingredientsForm) }}
 
 
 
             {{ form_row(ingredientsForm.ingredient) }}
             {# choix de la catégory de l'ingredient #}
-        {{ form_end(ingredientsForm) }}
-    </section>
+            {{ form_end(ingredientsForm) }}
+        </section>
 
+    </main>
 {% endblock %}
