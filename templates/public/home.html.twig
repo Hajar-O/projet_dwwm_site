@@ -29,11 +29,12 @@
 
             <section class="lastRecipe">
                 <h2>Notre dernière recette</h2>
-                <div class="lastRecipeImg">
-                    <img src="{{ asset('assets/uploads/'~lastRecipe.image) }}" alt="">
-                    <h3 class="lastRecipeTitle">{{ lastRecipe.title }}</h3>
-                </div>
-
+                <a href="{{ path('recipe',{id:lastRecipe.id}) }}">
+                    <div class="lastRecipeImg">
+                        <img src="{{ asset('assets/uploads/'~lastRecipe.image) }}" alt="">
+                        <h3 class="lastRecipeTitle">{{ lastRecipe.title }}</h3>
+                    </div>
+                </a>
             </section>
     </main>
 

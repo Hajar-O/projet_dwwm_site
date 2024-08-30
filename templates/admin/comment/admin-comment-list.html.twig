@@ -1,0 +1,49 @@
+{% extends 'admin/base.admin.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
+{% endblock %}
+{% block content %}
+    <main>
+        <h3>Liste des commentaires</h3>
+        <div class="buttonGestion">
+            <button></button>
+        </div>
+        <section class="tableCenter">
+            <table id="myTable">
+                <thead>
+                    <tr>
+                        <td>Pseudo</td>
+                        <td>Commentaire</td>
+                        <td>Date</td>
+                        <td>Gestion</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for comment in comments %}
+                        <tr>
+                            <td>{{ comment.idUser.pseudo }}</td>
+                            <td>{{ comment.publishedAt |date('d/m/Y H:i') }}</td>
+                            <td>{{ comment.text }}</td>
+                            <td>
+                                <p class="jsDeleteButton"><i class="fa-solid fa-trash-can"></i></p>
+                                <div class="jsDelete">
+                                    <h4>Voulez vous vraiment supprimer le commentaire ?</h4>
+                                    <div class="flexButton">
+                                        <p><a href="{{ path('admin_comment_delete',{id: comment.id}) }}">Supprimer</a></p>
+                                        <p><a href="{{ path('admin_ingredients') }}">Annuler</a></p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </section>
+    </main>
+{% endblock %}
+{% block javascript %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
+
+{% endblock %}

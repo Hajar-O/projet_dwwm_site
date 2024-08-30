@@ -47,7 +47,7 @@
     @include display;
     gap: 40px;
     width: 90%;
-    margin-top: 30px;
+    margin: 30px auto 30px;
     h4{
       text-align: center;
       text-transform: uppercase;
@@ -138,6 +138,11 @@
       display: block;
       margin: 15px auto 0;
       width:fit-content;
+      transition: all 1s ease;
+
+      &:hover{
+        background-color: rgba(255, 255, 255, 0.41);
+      }
     }
 
     .reviewArea{
@@ -164,7 +169,9 @@
     padding: 20px;
     box-shadow: 3px 3px 3px #b0abab;
 
-
+    section:nth-of-type(even){
+      background-color: #d3cfcf;
+    }
     h4{
       width: 60%;
       margin: 20px auto 40px ;
@@ -190,6 +197,7 @@
 
       div:first-child{
         //background-color: #ada5a5;
+        width: 35%;
         p:first-child{
           text-align: left;
           font-family: "Montserrat",Sans-Serif;
@@ -205,7 +213,7 @@
 
       #text{
 
-        border-bottom:1px solid black;
+        border-bottom:1px solid rgba(105, 102, 102, 0.8);
         width: 100%;
         p{
           text-align: left;

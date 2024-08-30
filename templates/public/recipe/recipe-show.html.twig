@@ -70,7 +70,7 @@
                 {% for review in reviews %}
                     <section id="review">
                             <div>
-                                <p>{{ review.idUser.pseudo }}</p>
+                                <p><i class="fa-regular fa-user"></i> {{ review.idUser.pseudo }}</p>
                                 <p>{{ review.publishedAt |date('d/m/Y H:i') }}</p>
                             </div>
                             <div id="text">
