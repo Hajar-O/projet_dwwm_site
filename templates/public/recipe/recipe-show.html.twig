@@ -22,27 +22,21 @@
                 <div class="ingredient">
                     <h4>Ingrédients</h4>
 
-                    <div>
+                    <ul>
                         {% for RecipeIngredient in recipe.recipeIngredients %}
-                            <table>
-                                <tr>
-                                    <td>{{ RecipeIngredient.ingredient.ingredient }}</td>
-                                    <td>{{ RecipeIngredient.quantity }}</td>
-                                    <td>{{ RecipeIngredient.measure.name }}</td>
-                                </tr>
-                            </table>
 
-
-
-
+                            <li class="ingredientList">
+                                <span>{{ RecipeIngredient.ingredient.ingredient }}</span>
+                                <span>{{ RecipeIngredient.quantity }} {{ RecipeIngredient.measure.name }}</span>
+                            </li>
                         {% endfor %}
-                    </div>
+                    </ul>
                 </div>
 
                 <div class="step">
                     <h4>Préparation</h4>
                     <div>
-                        <p>{{ recipe.description }}</p>
+                        <p class="préparation">{{ recipe.description | nl2br }}</p> {# nl2brFiltre sur chaine de caractère. conserve la forme lors de la saisie #}
                     </div>
 
                 </div>
@@ -70,12 +64,19 @@
             {% else %}
             {% endif %}
         </section>
-        <section>
+        <section class="allReviews">
+            <h4><p>Commentaires</p></h4>
             {% if reviews is not empty %}
                 {% for review in reviews %}
-                    <p>{{ review.user.pseudo }}</p>
-                    <p>le : {{ review.createdAt |date('d/m/Y H:i') }}</p>
-                    <p>{{ review.text }}</p>
+                    <section id="review">
+                            <div>
+                                <p>{{ review.idUser.pseudo }}</p>
+                                <p>{{ review.publishedAt |date('d/m/Y H:i') }}</p>
+                            </div>
+                            <div id="text">
+                                <p>{{ review.text }}</p>
+                            </div>
+                    </section>
                 {% endfor %}
             {% else %}
                 <p>Aucun avis pour le moment...</p>

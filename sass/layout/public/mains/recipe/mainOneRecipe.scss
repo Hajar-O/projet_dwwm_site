@@ -47,13 +47,14 @@
     @include display;
     gap: 40px;
     width: 90%;
+    margin-top: 30px;
     h4{
       text-align: center;
       text-transform: uppercase;
     }
     .ingredient{
         width: 30%;
-        div{
+        ul{
           background-color: #e1dedc;
           box-shadow: 0px 4px 10px 0px #796363;
           padding: 30px;
@@ -63,6 +64,11 @@
     .step{
       width: 50%;
 
+      .préparation{
+        text-align: left;
+        line-height: 20px;
+      }
+
       div{
         background-color:  #e1dedc;
         box-shadow: 0px 4px 10px 0px #796363;
@@ -71,7 +77,13 @@
       }
     }
   }
-
+  .ingredientList{
+    @include display($place: space-between);
+    margin: 10px 0;
+    span{
+      text-transform: capitalize;
+    }
+  }
   /*------------------FORMULAIRE---REVIEWS----------------*/
   .myReviews{
     z-index: 500;
@@ -101,9 +113,9 @@
     //height: 70vh;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.57);
-    padding: 50px;
+    padding: 30px;
     margin: auto;
-    width: 70%;
+    width: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -111,10 +123,21 @@
     p{
       color: whitesmoke;
       text-transform: uppercase;
-      font-family: "monsereat",Sans-Serif;
+      font-family: "Montserrat",Sans-Serif;
       font-size: 20px;
       font-weight: 200;
       margin-bottom: 30px;
+    }
+
+    .btnEnvoye{
+      all:unset;
+      border: 1px solid whitesmoke;
+      padding: 10px;
+      color: white;
+      font-family: "Montserrat",Sans-Serif;
+      display: block;
+      margin: 15px auto 0;
+      width:fit-content;
     }
 
     .reviewArea{
@@ -123,11 +146,76 @@
       height: 150px; /* Définissez la hauteur */
       padding: 10px; /* Ajoutez de l'espacement à l'intérieur */
       border: 2px solid #ccc; /* Définissez une bordure */
+      color: white;
+      &::placeholder{
+        color: #d5d0d0;
+      }
 
 
     }
 
   }
+/*----------------ALL--REVIEWS----------------*/
 
+  .allReviews{
+    background-color: #e7e3e3;
+    width: 60%;
+    margin: 30px auto 30px;
+    padding: 20px;
+    box-shadow: 3px 3px 3px #b0abab;
+
+
+    h4{
+      width: 60%;
+      margin: 20px auto 40px ;
+      font-family: "Montserrat",Sans-Serif;
+      font-weight: normal;
+
+
+      p{
+        width: 80%;
+        padding: 10px;
+        margin: auto;
+        //background-color: #867f7a;
+        text-align: left;
+        border-bottom: solid black 1px;
+        font-size: 20px;
+      }
+    }
+
+    #review{
+      display: flex;
+      width: 60%;
+      margin: 20px auto 20px;
+
+      div:first-child{
+        //background-color: #ada5a5;
+        p:first-child{
+          text-align: left;
+          font-family: "Montserrat",Sans-Serif;
+          font-weight: 500;
+        }
+        p:nth-child(2){
+          text-align: left;
+          font-family: "Montserrat",Sans-Serif;
+          font-weight: 200;
+          font-size: 12px;
+        }
+      }
+
+      #text{
+
+        border-bottom:1px solid black;
+        width: 100%;
+        p{
+          text-align: left;
+          align-items: center;
+          font-family: "Montserrat",Sans-Serif;
+
+        }
+      }
+
+    }
+  }
 
 }

@@ -91,8 +91,8 @@ class RecipeController extends AbstractController
             $entityManager->persist($review);
             $entityManager->flush();
 
-            //redirection pour éviter la redirection
-            return $this->redirectToRoute('recipe_show', ['id' => $recipe->getId()]);
+            //redirection pour éviter double soumission
+            return $this->redirectToRoute('recipe', ['id' => $recipe->getId()]);
         }
 
         $reviews = $commentRepository->findBy(['idRecipe'=> $recipe]);
