@@ -78,15 +78,26 @@ h3{
 }
 
 /*---------------alert-delete--JS----------*/
-.jsDelete{
+.overlay{
     display: none;
-    position: absolute;
-    background-color: white;
-    border: rgba(0, 0, 0, 0.8) solid 2px;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    padding: 100px;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.66);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    .jsDelete{
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: white;
+        border: solid 1px black;
+        padding: 100px;
+        width: 50%;
+
+    }
 
     .flexButton{
         display: flex;

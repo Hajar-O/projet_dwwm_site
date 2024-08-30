@@ -24,13 +24,15 @@
                             <td>
                                 <p><a href="{{ path('admin_measure_update', {id: measure.id}) }}"><i class="fa-solid fa-pen"></i></a></p>
                                 <p class="jsDeleteButton"><i class="fa-solid fa-trash-can"></i></p>
-                                <div class="jsDelete">
-                                    <h4>Voulez vous vraiment supprimer la meusure ?</h4>
-                                    <div class="flexButton">
-                                        <p><a href="{{ path('admin_measure_delete',{id: measure.id}) }}">Supprimer</a></p>
-                                        <p><a href="{{ path('admin_measure') }}">Annuler</a></p>
-                                    </div>
+                                <div class="overlay">
+                                    <div class="jsDelete">
+                                        <h4>Voulez vous vraiment supprimer la meusure ?</h4>
+                                        <div class="flexButton">
+                                            <p><a href="{{ path('admin_measure_delete',{id: measure.id}) }}">Supprimer</a></p>
+                                            <p><a href="{{ path('admin_measure') }}">Annuler</a></p>
+                                        </div>
 
+                                    </div>
                                 </div>
                             </td>
                         </tr>

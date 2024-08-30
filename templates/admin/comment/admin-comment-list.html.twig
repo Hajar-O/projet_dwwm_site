@@ -28,11 +28,13 @@
                             <td>{{ comment.text }}</td>
                             <td>
                                 <p class="jsDeleteButton"><i class="fa-solid fa-trash-can"></i></p>
-                                <div class="jsDelete">
-                                    <h4>Voulez vous vraiment supprimer le commentaire ?</h4>
-                                    <div class="flexButton">
-                                        <p><a href="{{ path('admin_comment_delete',{id: comment.id}) }}">Supprimer</a></p>
-                                        <p><a href="{{ path('admin_comments') }}">Annuler</a></p>
+                                <div class="overlay">
+                                    <div class="jsDelete">
+                                        <h4>Voulez vous vraiment supprimer le commentaire ?</h4>
+                                        <div class="flexButton">
+                                            <p><a href="{{ path('admin_comment_delete',{id: comment.id}) }}">Supprimer</a></p>
+                                            <p><a href="{{ path('admin_comments') }}">Annuler</a></p>
+                                        </div>
                                     </div>
                                 </div>
                             </td>
