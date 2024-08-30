@@ -13,9 +13,9 @@
         <table id="myTable">
             <thead>
                 <tr>
-                    <td>Nom de l'admin</td>
+                    <td>Pseudo</td>
                     <td>Mail</td>
-                    {# <td>Rôle</td> #}
+                     <td>Rôle</td>
                     <td>Gestion</td>
                 </tr>
             </thead>
@@ -24,18 +24,29 @@
                 <tr>
                     <td>{{ user.pseudo }}</td>
                     <td>{{ user.email }}</td>
-                    {# <td>{{ user.roles }}</td> #}
-                    <td><p><a href="{{ path('edit-admin', { id: user.id }) }}"><i class="fa-solid fa-pen"></i></a></p></td>
+                     <td>
+                         {% if 'ROLE_ADMIN' in user.roles %}
+                             <p>Admin</p>
+                         {% elseif 'ROLE_USER' in user.roles %}
+                             <p>User</p>
+                         {% endif %}
+                     </td>
+                    <td>
+                        <p><a href="{{ path('edit-admin', { id: user.id }) }}"><i class="fa-solid fa-pen"></i></a></p>
+                        <p class="jsDeleteButton"><i class="fa-solid fa-trash-can"></i></p>
+                        <div class="jsDelete">
+                            <h4>Voulez vous vraiment supprimer l'utilisateur ?</h4>
+                            <div class="flexButton">
+                                <p><a href="{{ path('admin_delete_user',{id: user.id}) }}">Supprimer</a></p>
+                                <p><a href="{{ path('admin_list') }}">Annuler</a></p>
+                            </div>
+                        </div>
+
+                    </td>
 
                 </tr>
             {% endfor %}
             </tbody>
-
-
-
-
-
-
 
 
         </table>

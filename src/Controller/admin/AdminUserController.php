@@ -7,6 +7,7 @@ use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -80,5 +81,29 @@ class AdminUserController extends AbstractController
         return $this->render('admin/users/edit-admin.html.twig', [
             'adminForm' => $adminForm->createView(),
         ]);
+    }
+
+    #[Route('/admin/delete/{id}', name: 'admin_delete_user')]
+    public function deleteUser(UserRepository $userRepository, EntityManagerInterface $entityManager, Request $request, UserPasswordHasherInterface $passwordHasher, $id)
+    {
+        $user = $userRepository->find($id);
+
+        if (!$user) {
+            $html = $this->renderView('admin/404.html.twig');
+            return new Response($html, 404);
+        }
+
+        try{
+            $entityManager->remove($user);
+            $entityManager->flush();
+
+            $this->addFlash('success','Utilisateur supprimé.');
+        }catch(\Exception $e){
+
+            return $this->renderView('admin/404.html.twig',[
+                    'error' => $e->getMessage(),
+            ]);
+        }
+        return $this->redirectToRoute('admin_list');
     }
 }

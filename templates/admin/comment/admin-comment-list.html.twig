@@ -13,6 +13,7 @@
                 <thead>
                     <tr>
                         <td>Pseudo</td>
+                        <td>Recette</td>
                         <td>Commentaire</td>
                         <td>Date</td>
                         <td>Gestion</td>
@@ -22,6 +23,7 @@
                     {% for comment in comments %}
                         <tr>
                             <td>{{ comment.idUser.pseudo }}</td>
+                            <td>{{ comment.idrecipe.title }}</td>
                             <td>{{ comment.publishedAt |date('d/m/Y H:i') }}</td>
                             <td>{{ comment.text }}</td>
                             <td>
@@ -30,7 +32,7 @@
                                     <h4>Voulez vous vraiment supprimer le commentaire ?</h4>
                                     <div class="flexButton">
                                         <p><a href="{{ path('admin_comment_delete',{id: comment.id}) }}">Supprimer</a></p>
-                                        <p><a href="{{ path('admin_ingredients') }}">Annuler</a></p>
+                                        <p><a href="{{ path('admin_comments') }}">Annuler</a></p>
                                     </div>
                                 </div>
                             </td>
