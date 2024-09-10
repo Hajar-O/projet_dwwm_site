@@ -12,24 +12,41 @@ header {
     }
 
   nav{
-    height: 55px;
     background-color: rgba(0, 0, 0, 0.72);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: stretch;
     position: absolute;
     width: 100%;
     z-index: 1000;
 
-
+    ul li:first-child{
+      width: 50px;
+    }
 
     ul{
       display: flex;
       gap: 80px;
+      //width: 100%;
+      width: auto; /* Permet au ul de s'adapter au contenu */
+      flex-grow: 1;
     }
     li{
       display: flex;
       align-items: center;
+      position: relative;
+      &.nav-item{
+        width:125px
+      }
+
+
+      &:first-child{
+        margin-right: auto;
+        margin-left: 10px;
+      }
+      &:last-child{
+        margin-right: auto;
+      }
     }
     .ulNone, .ulNoneConnected{
       display: none;
@@ -40,20 +57,22 @@ header {
     }
     li:hover .ulNone{
       display: block;
-      //padding: 10px;
       background-color: rgba(0, 0, 0, 0.73);
       position: absolute;
-      bottom: -88px;
-      left: 410px;
+      bottom: 0;
+      right: 0;
+      width: 150px;
+      transform: translateY(100%);
     }
 
     li:hover .ulNoneConnected{
       display: block;
-      //padding: 10px;
       background-color: rgba(0, 0, 0, 0.73);
       position: absolute;
-      bottom: -62px;
-      right: 376px;
+      bottom: 0;
+      right: 0;
+      width: 150px;
+      transform: translateY(100%);
     }
 
 

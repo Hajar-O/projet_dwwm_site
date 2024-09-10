@@ -25,24 +25,27 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href="{{ path('recipe-list') }}">Recettes</a>
+                    <li><a href="{{ path('home') }}">
+                            <img class="logoNav" src="{{ asset('assets/img/FeuillesBlanc.svg') }}" alt="">
+                        </a></li>
+                    <li class="nav-item"><a href="{{ path('recipe-list') }}">Recettes <i class="fa-solid fa-angle-down"></i></a>
                         <ul class="ulNone">
-                            <li><a href="{{ path('recipe-list') }}">Les recettes</a></li>
+                            <li><a href="{{ path('recipe-list') }}">Les recettes</i></a></li>
                             <li><a href="{{ path('recipe-salted') }}">Recettes salées</a></li>
                             <li><a href="{{ path('recipe-sweet') }}">Recettes sucrées</a></li>
                         </ul>
                     </li>
-                    <li><a href="">Tutoriel</a></li>
-                    <li><a href="">Articles</a></li>
+                    <li class="nav-item"><a href="">Tutoriel<i class="fa-solid fa-angle-down"></i></a></li>
+                    <li class="nav-item"><a href="">Articles<i class="fa-solid fa-angle-down"></i></a></li>
                     {% if app.user %}
-                        <li><a href=""> <i class="fa-solid fa-user"> </i> {{ app.user.pseudo }}</a>
+                        <li class="nav-item"><a href=""> <i class="fa-solid fa-user"> </i> {{ app.user.pseudo }}</a>
                             <ul class="ulNoneConnected">
                                 <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
                                 <li><a href="{{ path('edit-user') }}">Modification compte</a></li>
                             </ul>
                         </li>
                     {% else %}
-                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                        <li class="nav-item"><a href="{{ path('app_login') }}">Se connecter</a></li>
                     {% endif %}
 
                 </ul>
@@ -70,6 +73,9 @@
         {% endblock %}
 
         <footer>
+            <div class="logoFooter">
+                <img src="{{ asset('assets/img/LogoV2Blanc.svg') }}" alt="">
+            </div>
             <nav>
                 <ul>
                     <li><a href="">BOUTIQUE</a></li>

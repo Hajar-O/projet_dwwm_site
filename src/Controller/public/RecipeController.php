@@ -63,10 +63,9 @@ class RecipeController extends AbstractController
     }
 
     #[Route('/recipe/all/{id}', name: 'recipe')]
-    public function showRecipe(int $id,RecipeIngredientRepository $ingredientRepository,CommentRepository $commentRepository, RecipeRepository $recipeRepository, Request $request, EntityManagerInterface $entityManager)
+    public function showRecipe(int $id,CommentRepository $commentRepository, RecipeRepository $recipeRepository, Request $request, EntityManagerInterface $entityManager)
     {
         $recipe = $recipeRepository->find($id);
-        $ingredients = $ingredientRepository->findAll();
 
         if (!$recipe) {
             $html404 = $this->renderView('public/error/404.html.twig');
@@ -78,20 +77,27 @@ class RecipeController extends AbstractController
         $user = $this->getUser();
 
         $review = new Comment;
+        //Associe la recette courante au commentaire
         $review->setIdRecipe($recipe);
+        //Associe l'utilisateur connecté au commentaire
         $review->setIdUser($user);
+        //Définit la date de publication du commentaire à la date et l'heure actuelles.
         $review->setPublishedAt(new \DateTimeImmutable('now'));
 
         //je créé un formulaire de commentaire
+        // on a créé une classe de "gabarit de formulaire HTML" avec php bin/console make:form
 
         $reviewsForm = $this->createForm(CommentType::class, $review);
+        //Cette méthode traite la requête HTTP
         $reviewsForm->handleRequest($request);
 
         if($reviewsForm->isSubmitted() && $reviewsForm->isValid()){
+            //pérpare l'objet review à l'insertion en bdd
             $entityManager->persist($review);
+            //execute l'insertion
             $entityManager->flush();
 
-            //redirection pour éviter double soumission
+            //redirection vers la meme page pour éviter double soumission
             return $this->redirectToRoute('recipe', ['id' => $recipe->getId()]);
         }
 

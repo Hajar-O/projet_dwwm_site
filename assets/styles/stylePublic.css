@@ -96,7 +96,6 @@ h3{
         border: solid 1px black;
         padding: 100px;
         width: 50%;
-
     }
 
     .flexButton{
@@ -126,8 +125,9 @@ h3{
     top: 68px;
     text-align: center;
     padding: 10px;
-    font-family: "montserrat", Sans-Serif;
+    font-family: "Montserrat", Sans-Serif;
     font-size: 18px;
+    color: white;
 
 }
 .error_message{
@@ -137,7 +137,7 @@ h3{
     top: 68px;
     text-align: center;
     padding: 10px;
-    font-family: "montserrat", Sans-Serif;
+    font-family: "Montserrat", Sans-Serif;
     font-size: 18px;
     color: red;
     font-weight: bolder;
@@ -148,4 +148,19 @@ footer{
     margin-top: 20px;
     background-color: #989595;
     text-align: center;
+}
+/*-----------------LONIN-ADMIN--------------*/
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120vh;
+}
+.login{
+    width: 50%;
+    margin: auto;
+    button{
+        width: 20%;
+        margin: 20px auto 20px;
+    }
 }

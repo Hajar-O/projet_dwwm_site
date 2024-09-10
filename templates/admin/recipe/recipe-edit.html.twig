@@ -4,72 +4,33 @@
 
     <main>
         <section class="fomulaireEdit">
-            {{ form_start(recipeForm) }}
-
-            {{ form_row(recipeForm.title) }}
-            {{ form_row(recipeForm.image) }}
-            {{ form_row(recipeForm.idCategory) }}
-
+            {{ form_start(form) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.publishedAt) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.time) }}
+            {{ form_row(form.image) }}
+            {{ form_row(form.isPublished) }}
+            {# the data-index attribute is required for the JavaScript code below #}
+            <button type="button" class="add_item_link" data-collection-holder-class="recipeIngredients">Add a recipeIngredient
+            </button>
             <ul class="recipeIngredients"
-                data-index="{{ recipeForm.recipeIngredients|length > 0 ? recipeForm.recipeIngredients|last.vars.name + 1 : 0 }}"
-                data-prototype="{{ form_widget(recipeForm.recipeIngredients.vars.prototype)|e('html_attr') }}">
-
-                {% for ingredient in recipeForm.recipeIngredients %}
+                data-index="{{ form.recipeIngredients|length > 0 ? form.recipeIngredients|last.vars.name + 1 : 0 }}"
+                data-prototype="{{ form_widget(form.recipeIngredients.vars.prototype)|e('html_attr') }}"
+            >
+                {% for recipeIngredientForm in  form.recipeIngredients %}
                     <li>
-                        {{ form_row(ingredient) }}
-                        <button type="button" class="btn-remove-ingredient">Remove</button>
+                        {{ form_widget(recipeIngredientForm) }}
                     </li>
                 {% endfor %}
             </ul>
-            <button type="button" class="add_item_link" data-collection-holder-class="recipeIngredients">Add an ingredient</button>
 
-            {{ form_end(recipeForm) }}
+            {{ form_end(form) }}
         </section>
 
     </main>
 
     {% block javascriptEnd %}
-    <script>
-        document
-            .querySelectorAll('.add_item_link')
-            .forEach(btn => {
-                btn.addEventListener("click", addFormToCollection)});
 
-        document
-            .querySelectorAll('.recipeIngredients')
-            .forEach(collection => {
-                collection.addEventListener('click', function(e) {
-                    if (e.target && e.target.classList.contains('btn-remove-ingredient')) {
-                        removeFormFromCollection(e);
-                    }
-                });
-            });
-
-        function addFormToCollection(e) {
-            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
-
-            const item = document.createElement('li');
-
-            item.innerHTML = collectionHolder
-                .dataset
-                .prototype
-                .replace(
-                    /__name__/g,
-                    collectionHolder.dataset.index
-                );
-
-            collectionHolder.appendChild(item);
-
-            collectionHolder.dataset.index++;
-        }
-
-        function removeFormFromCollection(e) {
-            const item = e.target.closest('li');
-            if (item) {
-                item.remove();
-            }
-        }
-
-    </script>
 {% endblock %}
 {% endblock %}

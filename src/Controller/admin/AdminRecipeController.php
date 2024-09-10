@@ -37,7 +37,7 @@ class AdminRecipeController extends AbstractController
     }
 
     #[Route('/admin/recipe-add', name: 'admin_recipe_add')]
-    public function  addRecipe(SluggerInterface $slugger, ParameterBagInterface $params, CategoryIngredientRepository $categoryIngredientRepository,EntityManagerInterface $entityManager, Request $request)
+   /* public function  addRecipe(SluggerInterface $slugger, ParameterBagInterface $params, CategoryIngredientRepository $categoryIngredientRepository,EntityManagerInterface $entityManager, Request $request)
     {
         // on a créé une classe de "gabarit de formulaire HTML" avec php bin/console make:form
 
@@ -112,12 +112,61 @@ class AdminRecipeController extends AbstractController
                 'categoryIngredients' => $CategoryIng,
                 //'ingredients' => $ingredient
             ]);
+        }*/
+    public function new(SluggerInterface $slugger, ParameterBagInterface $params, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $recipe = new Recipe();
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageFile = $form->get('image')->getData();
+
+            // si il y a bien un fichier envoyé
+            if ($imageFile) {
+                //je récupère son nom
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+
+                // je nettoie le nom (sort les caractères spéciaux etc)
+
+                $safeFilename = $slugger->slug($originalFilename);
+                // Je rajoute un identifiant unnique au nom
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+
+                try {
+                    //je récupère le chemin de la racine du projet
+                    $rootPath = $params->get('kernel.project_dir');
+
+                    // je déplace le fichier dans le dossier /public/upload en partant de la racine
+                    // du projet, et je renomme le fichier avec le nouveau nom (slugifié et identifiant unique)
+                    $imageFile->move($rootPath . '/public/assets/uploads', $newFilename);
+                } catch (FileException $e) {
+                    dd($e->getMessage());
+                }
+                // je stocke dans la propriété image
+                // de l'entité article le nom du fichier
+                $recipe->setImage($newFilename);
+
+                $entityManager->persist($recipe);
+                $entityManager->flush();
+            }
+            $this->addFlash('success', 'la recette à bien été ajouté');
+
+            return $this->redirectToRoute('admin_recipe', [], Response::HTTP_SEE_OTHER);
+
         }
+
+        return $this->render('admin/recipe/recipe-add.html.twig', [
+            'recipe' => $recipe,
+            'form' => $form,
+        ]);
+    }
 
 
 
         #[Route('/admin/recipe-edit/{id}', name: 'admin_recipe_edit')]
-    public function upDateRecipe(int $id,SluggerInterface $slugger, ParameterBagInterface $params, RecipeRepository $recipeRepository,CategoryIngredientRepository $categoryIngredientRepository, EntityManagerInterface $entityManager, Request $request)
+   /* public function upDateRecipe(int $id,SluggerInterface $slugger, ParameterBagInterface $params, RecipeRepository $recipeRepository,CategoryIngredientRepository $categoryIngredientRepository, EntityManagerInterface $entityManager, Request $request)
     {
 
         $recipe = $recipeRepository->find($id);
@@ -196,8 +245,80 @@ class AdminRecipeController extends AbstractController
             'recipeForm' => $recipeUpdateForm->createView(),
             'categoryIngredients' => $categoryIng
         ]);
-    }
+    }*/
 
+        public function edit(SluggerInterface $slugger, ParameterBagInterface $params, Request $request, Recipe $recipe, EntityManagerInterface $entityManager): Response
+        {
+            $existingImage = $recipe->getImage();
+            $originalRecipeIngredients = new ArrayCollection();
+
+            // Create an ArrayCollection of the current RecipeIngredient objects in the database
+            foreach ($recipe->getRecipeIngredients() as $recipeIngredient) {
+                $originalRecipeIngredients->add($recipeIngredient);
+            }
+
+            $form = $this->createForm(RecipeType::class, $recipe);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $imageFile = $form->get('image')->getData();
+
+                if ($imageFile) {
+                    //je récupère son nom
+                    $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+
+                    // je nettoie le nom (sort les caractères spéciaux etc)
+
+                    $safeFilename = $slugger->slug($originalFilename);
+                    // Je rajoute un identifiant unnique au nom
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+
+                    try {
+                        //je récupère le chemin de la racine du projet
+                        $rootPath = $params->get('kernel.project_dir');
+
+                        // je déplace le fichier dans le dossier /public/upload en partant de la racine
+                        // du projet, et je renomme le fichier avec le nouveau nom (slugifié et identifiant unique)
+                        $imageFile->move($rootPath . '/public/assets/uploads', $newFilename);
+                    } catch (FileException $e) {
+                        dd($e->getMessage());
+                    }
+                    // je stocke dans la propriété image
+                    // de l'entité article le nom du fichier
+                    $recipe->setImage($newFilename);
+                } else{
+                    // Si aucun fichier n'est uploadé, conserver l'image existante
+                    $recipe->setImage($existingImage);
+                }
+                // Remove the relationship between the RecipeIngredient and the Recipe
+                foreach ($originalRecipeIngredients as $recipeIngredient) {
+                    if (false === $recipe->getRecipeIngredients()->contains($recipeIngredient)) {
+                        // Remove the RecipeIngredient from the Recipe
+
+                        $recipe->getRecipeIngredients()->removeElement($recipeIngredient);
+                        // If it was a many-to-one relationship, remove the relationship like this
+                        $recipeIngredient->setRecipe(null);
+
+                        $entityManager->persist($recipeIngredient);
+
+                        // If you wanted to delete the Tag entirely, you can also do that
+                        $entityManager->remove($recipeIngredient);
+                    }
+                }
+
+                $entityManager->persist($recipe);
+                $entityManager->flush();
+
+                $this->addFlash('success', 'La recette à bien été mise à jour.');
+                return $this->redirectToRoute('admin_recipe', [], Response::HTTP_SEE_OTHER);
+
+            }
+
+            return $this->render('admin/recipe/recipe-edit.html.twig', [
+                'recipe' => $recipe,
+                'form' => $form,
+            ]);
+        }
     #[Route('/admin/recipe-delete/{id}', name: 'admin_recipe_delete')]
     public function deleteRecipe(int $id, RecipeRepository $recipeRepository, EntityManagerInterface $entityManager) : Response
     {

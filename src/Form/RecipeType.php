@@ -26,44 +26,28 @@ class RecipeType extends AbstractType
             ->add('publishedAt', null, [
                 'widget' => 'single_text',
             ])
-            ->add('time')
             ->add('recipeIngredients', CollectionType::class, [
                 'entry_type' => RecipeIngredientType::class,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
-                //'by_reference' => false,
-
-                //'choice_label' => 'ingredient',
-
+                'allow_delete' => true,
+                'by_reference' => false,
             ])
-            ->add('description',CKEditorType::class, [
- /*               'config' => [
-                    'config_name' => 'default',
-                    'uiColor' => '#1c1c1c',
-                    'toolbar' => 'full',
-                    'attr' => ['id'=> 'editor']
-
-                ],*/
-            ])
-            ->add('image', FileType::class, [
+            ->add('time')
+            ->add('description')
+            ->add('image',FileType::class, [
                 'mapped' => false,
                 'required' => false,
-            ])
-            ->add('isPublished', CheckboxType::class, [
-                'label' => 'Published',
-                'required' => false,    // option si la case à cocher non obligatoire
-            ])
+    ])
             ->add('idCategory', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'type',
             ])
 
-            /* ->add('recipeIngredients', EntityType::class, [
-                'class' => RecipeIngredient::class,
-                'choice_label' => 'ingredient',
-                'multiple'=> true,
-            ])*/
+            ->add('isPublished')
             ->add('save', SubmitType::class, [])
+        ;
+
         ;
     }
 
