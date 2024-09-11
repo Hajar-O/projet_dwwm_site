@@ -1,0 +1,19 @@
+@media screen and (max-width: 480px){
+  main #imgDefault .logoBG{
+    width: 60%;
+  }
+  #home {
+    .lastRecipe .lastRecipeImg{
+      height: 40vh;
+      width: 90%;
+      margin: auto;
+
+      .lastRecipeTitle{
+        width: 100%;
+        text-align: center;
+      }
+
+    }
+
+  }
+}

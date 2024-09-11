@@ -142,7 +142,7 @@ class AdminRecipeController extends AbstractController
                     // du projet, et je renomme le fichier avec le nouveau nom (slugifié et identifiant unique)
                     $imageFile->move($rootPath . '/public/assets/uploads', $newFilename);
                 } catch (FileException $e) {
-                    dd($e->getMessage());
+
                 }
                 // je stocke dans la propriété image
                 // de l'entité article le nom du fichier
@@ -151,7 +151,7 @@ class AdminRecipeController extends AbstractController
                 $entityManager->persist($recipe);
                 $entityManager->flush();
             }
-            $this->addFlash('success', 'la recette à bien été ajouté');
+            $this->addFlash('success', 'La recette à bien été ajouté');
 
             return $this->redirectToRoute('admin_recipe', [], Response::HTTP_SEE_OTHER);
 
@@ -281,7 +281,7 @@ class AdminRecipeController extends AbstractController
                         // du projet, et je renomme le fichier avec le nouveau nom (slugifié et identifiant unique)
                         $imageFile->move($rootPath . '/public/assets/uploads', $newFilename);
                     } catch (FileException $e) {
-                        dd($e->getMessage());
+
                     }
                     // je stocke dans la propriété image
                     // de l'entité article le nom du fichier

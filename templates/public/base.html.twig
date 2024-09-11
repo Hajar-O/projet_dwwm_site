@@ -24,21 +24,31 @@
 
         <header>
             <nav>
-                <ul>
+                <a id="logo" href="{{ path('home') }}">
+                    <img class="logoNav" src="{{ asset('assets/img/FeuillesBlanc.svg') }}" alt="logo All cook">
+                </a>
+                <div class="burger">
+                    <ul class="menuBurger">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <ul class="nav-menu">
                     <li><a href="{{ path('home') }}">
-                            <img class="logoNav" src="{{ asset('assets/img/FeuillesBlanc.svg') }}" alt="">
+                            <img class="logoNav" src="{{ asset('assets/img/FeuillesBlanc.svg') }}" alt="logo All cook">
                         </a></li>
-                    <li class="nav-item"><a href="{{ path('recipe-list') }}">Recettes <i class="fa-solid fa-angle-down"></i></a>
+                    <li class="nav-item">Recettes<i class="fa-solid fa-angle-down"></i>
                         <ul class="ulNone">
-                            <li><a href="{{ path('recipe-list') }}">Les recettes</i></a></li>
+                            <li><a href="{{ path('recipe-list') }}">Les recettes</a></li>
                             <li><a href="{{ path('recipe-salted') }}">Recettes salées</a></li>
                             <li><a href="{{ path('recipe-sweet') }}">Recettes sucrées</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a href="">Tutoriel<i class="fa-solid fa-angle-down"></i></a></li>
-                    <li class="nav-item"><a href="">Articles<i class="fa-solid fa-angle-down"></i></a></li>
+                    <li class="nav-item">Tutoriel<i class="fa-solid fa-angle-down"></i></li>
+                    <li class="nav-item">Articles<i class="fa-solid fa-angle-down"></i></li>
                     {% if app.user %}
-                        <li class="nav-item"><a href=""> <i class="fa-solid fa-user"> </i> {{ app.user.pseudo }}</a>
+                        <li class="nav-item"> <i class="fa-solid fa-user"> </i> {{ app.user.pseudo }}
                             <ul class="ulNoneConnected">
                                 <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
                                 <li><a href="{{ path('edit-user') }}">Modification compte</a></li>
@@ -90,7 +100,8 @@
             </nav>
         </footer>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    {% block javascript %}
+        <script src="{{ asset('assets/js/burgerNav.js') }}"></script>
+        {% block javascript %}
     {% endblock %}
     </body>
 

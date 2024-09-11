@@ -1,0 +1,14 @@
+@media screen and (max-width : 480px){
+  footer{
+
+    nav{
+      flex-direction: column;
+      ul li {
+        text-align: center;
+      }
+    }
+    nav ul:first-child{
+      flex-direction: column;
+    }
+  }
+}

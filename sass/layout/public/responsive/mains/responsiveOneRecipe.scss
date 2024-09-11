@@ -1,0 +1,25 @@
+@media screen and (max-width: 480px){
+  #Recipe{
+    .recette{
+      flex-direction: column;
+      width: 100%;
+
+      .ingredient{
+        width: 100%;
+        margin: auto;
+      }
+
+      .step{
+        width: 100%;
+        margin: auto;
+      }
+    }
+    .allReviews{
+      width: 90%;
+
+      #review{
+        width: 100%;
+      }
+    }
+  }
+}

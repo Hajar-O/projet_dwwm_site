@@ -1,14 +1,12 @@
 header {
-  /*background:  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/bc-home.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
-  z-index: 200;*/
-    a{
+    li,a{
       color: white;
       text-transform: uppercase;
       font-weight: lighter;
+      font-family: "Monserrat", Sans-Serif;
+      &#logo{
+        display: none;
+      }
     }
 
   nav{
@@ -20,6 +18,17 @@ header {
     width: 100%;
     z-index: 1000;
 
+    .burger{
+      display: none;
+      height: 20px;
+  }
+
+    }
+    .nav-menu {
+      display: flex;
+      flex-grow: 1;
+    }
+
     ul li:first-child{
       width: 50px;
     }
@@ -27,18 +36,17 @@ header {
     ul{
       display: flex;
       gap: 80px;
-      //width: 100%;
-      width: auto; /* Permet au ul de s'adapter au contenu */
+      width: auto;
       flex-grow: 1;
     }
     li{
       display: flex;
       align-items: center;
       position: relative;
+
       &.nav-item{
         width:125px
       }
-
 
       &:first-child{
         margin-right: auto;
@@ -55,7 +63,8 @@ header {
         font-size: 14px;
       }
     }
-    li:hover .ulNone{
+    li:hover .ulNone,
+    li:hover .ulNoneConnected {
       display: block;
       background-color: rgba(0, 0, 0, 0.73);
       position: absolute;
@@ -64,22 +73,10 @@ header {
       width: 150px;
       transform: translateY(100%);
     }
-
-    li:hover .ulNoneConnected{
-      display: block;
-      background-color: rgba(0, 0, 0, 0.73);
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 150px;
-      transform: translateY(100%);
-    }
-
-
 
 
   }
-}
+
 
 
 
