@@ -1,0 +1,19 @@
+@media screen and (max-width: 480px){
+  .login{
+    width: 85%;
+
+    .connexion{
+
+      input{
+        margin-left: 0;
+      }
+      .inputWrapper{
+        width: 100%;
+      }
+    }
+
+    .connexion button{
+      width: 50%;
+    }
+  }
+}

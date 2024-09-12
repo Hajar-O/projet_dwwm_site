@@ -48,9 +48,12 @@
     gap: 40px;
     width: 90%;
     margin: 30px auto 30px;
+
     h4{
       text-align: center;
       text-transform: uppercase;
+      font-family: "Monserrat", Sans-Serif;
+      font-weight: 400;
     }
     .ingredient{
         width: 30%;
@@ -115,7 +118,7 @@
     background-color: rgba(0, 0, 0, 0.57);
     padding: 30px;
     margin: auto;
-    width: 80%;
+    width: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);

@@ -15,11 +15,22 @@ main{
     }
     .logoBG{
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 40%;
+      left: 40%;
       transform: translate(-50%,-50%);
       width: 25%;
+      animation: logo 2s linear forwards;
+    }
 
+    @keyframes logo {
+      from{
+        opacity: 0;
+        transform: translateY(-300%);
+      }to {
+         opacity: 100%;
+         transform: translateY(0%);
+
+       }
     }
   }
 }

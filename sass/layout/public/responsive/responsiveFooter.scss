@@ -1,6 +1,8 @@
 @media screen and (max-width : 480px){
   footer{
-
+    .logoFooter{
+      width: 25%;
+    }
     nav{
       flex-direction: column;
       ul li {
