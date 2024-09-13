@@ -1,7 +1,8 @@
+/*-------------------Responsive--Mobile--------------------*/
 @media screen and (max-width: 480px){
   main #imgDefault .logoBG{
-    width: 60%;
-    transform: translate(-80%, -80%)
+    width: 50%;
+    transform: translate(-50%, -50%)
   }
   #home {
     .lastRecipe .lastRecipeImg{
@@ -16,5 +17,14 @@
 
     }
 
+  }
+}
+/*-------------------Responsive--Tablette--------------------*/
+
+@media screen and (min-width: 780px) and (max-width:1024px){
+  #home{
+    .lastRecipe .lastRecipeImg{
+      height: 50vh;
+    }
   }
 }
