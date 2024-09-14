@@ -53,7 +53,7 @@
                         <li class="nav-item"> <i class="fa-solid fa-user"></i>  {{ app.user.pseudo }}<i class="fa-solid fa-angle-down"></i>
                             <ul class="ulNoneConnected">
                                 <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
-                                <li><a href="{{ path('edit-user') }}">Modification compte</a></li>
+                                  <li><a href="{{ path('profil-user', {id: app.user.id}) }}">Voir le profil</a></li>
                             </ul>
                         </li>
                     {% else %}

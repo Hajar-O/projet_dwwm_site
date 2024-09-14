@@ -44,8 +44,12 @@ class RecipeType extends AbstractType
                 'choice_label' => 'type',
             ])
 
-            ->add('isPublished')
-            ->add('save', SubmitType::class, [])
+            ->add('isPublished', CheckboxType::class, [
+                'label'=>'Publier la recette'
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'Enregistrer'
+            ])
         ;
 
         ;

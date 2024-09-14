@@ -53,8 +53,16 @@ class UserController extends AbstractController
         ]);
 
     }
-    #[Route('/user/edit_profil', name: 'edit-user')]
-    public function editUser( EntityManagerInterface $entityManager, Request $request, UserPasswordHasherInterface $passwordHasher, $id)
+    #[Route('/user/profil/{id}', name: 'profil-user')]
+    public function profil(int $id, UserRepository $userRepository,)
+    {
+        $user = $userRepository->find($id);
+        return $this->render('public/users/profil.html.twig', [
+            'user' => $user,
+        ]);
+    }
+    #[Route('/user/edit_profil/{id}', name: 'edit-user')]
+    public function editUser(int $id, EntityManagerInterface $entityManager, Request $request, UserPasswordHasherInterface $passwordHasher)
     {
         $user = $entityManager->getRepository(User::class)->find($id);
 
@@ -78,12 +86,13 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('succes', 'Administarteur mis à jour avec succès !');
-            return $this->redirectToRoute('user_list');
+            $this->addFlash('succes', 'Mise à jour réussi !');
+            return $this->redirectToRoute('profil-user', ['id' => $user->getId()]);
 
         }
-        return $this->render('public/users/edit-user.html.twig', [
+        return $this->render('public/users/edit-user-profil.html.twig', [
             'userForm' => $userForm->createView(),
         ]);
     }
+
 }

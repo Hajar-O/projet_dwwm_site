@@ -109,6 +109,13 @@ h3{
         text-decoration: underline;
     }
 }
+
+#ingredient_js{
+    all: unset;
+    background-color: whitesmoke;
+    padding: 6px;
+    border-radius: 4px;
+}
 /*----------------Fomulaire Update-------------*/
 .fomulaireEdit{
     width: 80%;

@@ -1,0 +1,10 @@
+{% extends 'public/base.html.twig' %}
+{% block title %}Profil{% endblock %}
+
+{% block content %}
+    <h3>Mon profil</h3>
+
+    <p>{{ user.pseudo }}</p>
+    <p>{{ user.email }}</p>
+    <button><a href="{{ path('edit-user',{id: app.user.id}) }}">Modifer mes informations</a></button>
+{% endblock %}
