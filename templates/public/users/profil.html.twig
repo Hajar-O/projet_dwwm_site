@@ -2,9 +2,26 @@
 {% block title %}Profil{% endblock %}
 
 {% block content %}
-    <h3>Mon profil</h3>
+    <main>
 
-    <p>{{ user.pseudo }}</p>
-    <p>{{ user.email }}</p>
-    <button><a href="{{ path('edit-user',{id: app.user.id}) }}">Modifer mes informations</a></button>
+        {% block image %}
+            <section id="imgDefault">
+                <div class="imgDefault">
+                    <img src="{{ asset('assets/img/bc-home.jpg') }}" alt="">
+                </div>
+            </section>
+        {% endblock image %}
+
+            <section class="profil">
+                <h3>Mon profil</h3>
+
+                <div class="information">
+                    <p>Pseudo : {{ user.pseudo }}</p>
+                    <p>Email : {{ user.email }}</p>
+                </div>
+
+                <button class="edit_profil_button"><a id="modif_a" href="{{ path('edit-user',{id: app.user.id}) }}">Modifer</a></button>
+            </section>
+
+    </main>
 {% endblock %}

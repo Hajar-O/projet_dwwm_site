@@ -8,18 +8,21 @@ use App\Repository\CategoryIngredientRepository;
 use App\Repository\RecipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AdminRecipeController extends AbstractController
 {
     #[Route('/admin/recipe-list', name: 'admin_recipe')]
-    public function listRecipes(RecipeRepository $recipeRepository)
+    #[IsGranted('ROLE_ADMIN')]
+    public function listRecipes(RecipeRepository $recipeRepository )
     {
         $recipe = $recipeRepository->findAll();
             return $this->render('admin/recipe/recipe-list.html.twig', [

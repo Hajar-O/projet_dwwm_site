@@ -1,15 +1,27 @@
 @import "abstract/variables";
 @import "abstract/mixin";
 @import "general";
+
+//header
 @import "layout/public/header";
+
+//MAINS
 @import "layout/public/mains/home/main-home";
 @import "layout/public/mains/recipe/mainAllRecipe";
 @import "layout/public/mains/recipe/mainOneRecipe";
 @import "layout/public/mains/recipe/mainList_2";
 @import "layout/public/mains/recipe/mainHome";
+
+//login
 @import "layout/public/mains/connection/main_form_inscription";
 @import "layout/public/mains/connection/main_form_login";
+@import "layout/public/mains/connection/main_profil";
+@import "layout/public/mains/connection/main_profil_edit";
+
+//footer
 @import "layout/public/footer";
+
+//responsive mobile
 @import "layout/public/responsive/responsiveHeader";
 @import "layout/public/responsive/mains/responsiveHome";
 @import "layout/public/responsive/mains/responsiveOneRecipe";

@@ -5,14 +5,33 @@
 
 {% block content %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-        {{ form_start(userForm)}}
+    <main>
+        {% block image %}
+            <section id="imgDefault">
+                <div class="imgDefault">
+                    <img src="{{ asset('assets/img/bc-home.jpg') }}" alt="">
+                </div>
+            </section>
+        {% endblock image %}
 
-        {{ form_end(userForm)}}
-    {% endif %}
+        <section id="edit_profil">
+            {% if app.user %}
+                <div class="mb-3">
+                    {# You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a> #}
+                </div>
+                <div class="formEdit">
+                    {{ form_start(userUpdateForm)}}
+
+                    {{ form_label(userUpdateForm.email) }}
+                    {{ form_widget(userUpdateForm.email, {'attr': {'class': 'task_field', 'readonly': true}}) }}
+
+                    {{ form_end(userUpdateForm)}}
+                </div>
+
+            {% endif %}
+        </section>
+    </main>
+
 
 
 {% endblock %}

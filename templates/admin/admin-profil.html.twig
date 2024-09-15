@@ -3,9 +3,11 @@
 
 {% block content %}
 
-    <section>
+    <section class="adminProfil">
         {% if app.user %}
         <h1>Hello {{ admin.pseudo }}</h1>
+           {#  <button id="comment_button"><a href="{{ path('admin_comments') }}">Gestion des commentaires</a></button> #}
+
         {% endif %}
     </section>
 {% endblock %}

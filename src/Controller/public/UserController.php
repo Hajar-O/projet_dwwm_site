@@ -78,12 +78,12 @@ class UserController extends AbstractController
             throw $this->createNotFoundException('compte non trouvé.');
         }
 
-        $userForm = $this->createForm(UserType::class, $user);
-        $userForm->handleRequest($request);
+        $userUpdateForm = $this->createForm(UserType::class, $user);
+        $userUpdateForm->handleRequest($request);
 
-        if ($userForm->isSubmitted() && $userForm->isValid()) {
+        if ($userUpdateForm->isSubmitted() && $userUpdateForm->isValid()) {
 
-            $clearPassword = $userForm->get('password')->getData();
+            $clearPassword = $userUpdateForm->get('password')->getData();
             if ($clearPassword) {
                 // je hache et mets à J le mdp si modifié
                 $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
@@ -99,7 +99,7 @@ class UserController extends AbstractController
 
         }
         return $this->render('public/users/edit-user-profil.html.twig', [
-            'userForm' => $userForm->createView(),
+            'userUpdateForm' => $userUpdateForm->createView(),
         ]);
     }
 
