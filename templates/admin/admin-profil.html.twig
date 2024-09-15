@@ -4,6 +4,8 @@
 {% block content %}
 
     <section>
-        <h1>Hello Admin</h1>
+        {% if app.user %}
+        <h1>Hello {{ admin.pseudo }}</h1>
+        {% endif %}
     </section>
 {% endblock %}

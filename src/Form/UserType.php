@@ -63,6 +63,21 @@ class UserType extends AbstractType
                 'attr' => [
                     'placeholder' => ' ',
                 ],
+                'constraints' => [
+                    new Assert\NotBlank([
+                        'message' => 'Le pseudo ne peut pas être vide.',
+                    ]),
+                    new Assert\Length([
+                        'min' => 3,
+                        'max' => 20,
+                        'minMessage' => 'Le pseudo doit contenir au moins {{ limit }} caractères.',
+                        'maxMessage' => 'Le pseudo ne peut pas dépasser {{ limit }} caractères.',
+                    ]),
+                    new Assert\Regex([
+                        'pattern' => '/^[a-zA-Z0-9_]{3,20}$/',
+                        'message' => 'Le pseudo doit comporter entre 3 et 20 caractères, et ne contenir que des lettres, des chiffres et des tirets bas.',
+                    ]),
+                ],
             ])
             ->add('submit', SubmitType::class,[
                 'label' => 'S\'inscrire',

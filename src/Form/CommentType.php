@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class CommentType extends AbstractType
 {
@@ -22,7 +23,22 @@ class CommentType extends AbstractType
                 'attr' => [
                     'class' => 'reviewArea',
                     'placeholder' => 'Mon commentaire...'
-                ]
+                ],
+                'constraints' => [
+                    new Assert\NotBlank([
+                        'message' => 'Le commentaire ne peut pas être vide.',
+                    ]),
+                    new Assert\Length([
+                        'min' => 1,
+                        'max' => 500,
+                        'minMessage' => 'Le commentaire doit contenir au moins {{ limit }} caractère.',
+                        'maxMessage' => 'Le commentaire ne peut pas dépasser {{ limit }} caractères.',
+                    ]),
+                    /*new Assert\Regex([
+                        'pattern' => '/^[\p{L}\p{N}\p{P}\p{S}\p{Z}]*$/u',
+                        'message' => 'Le commentaire contient des caractères non autorisés.',
+                    ]),*/
+                ],
             ])
             /*->add('publishedAt', null, [
                 'widget' => 'single_text',

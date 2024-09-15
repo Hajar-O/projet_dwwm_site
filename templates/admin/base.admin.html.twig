@@ -24,7 +24,7 @@
 
             {% if app.user %}
                 <li><a href="{{ path('app_logout') }}">SE DÉCONNECTER</a></li>
-                <li><p>Bonjour, {{ app.user.pseudo }}</a></p>
+                <li><a href="{{ path('admin') }}"><p>Bonjour, {{ app.user.pseudo }}</a></p>
             {% endif %}
         </ul>
     </nav>

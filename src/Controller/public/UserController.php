@@ -25,7 +25,7 @@ class UserController extends AbstractController
         ]);
     }
     #[Route('/inscription', name: 'add-user')]
-    public function insertUser(EntityManagerInterface $entityManager, Request $request, UserPasswordHasherInterface $passwordHasher)
+    public function insertUser(EntityManagerInterface $entityManager, Request $request, UserPasswordHasherInterface $passwordHasher, UserRepository $userRepository)
     {
 
         $user = new User();
@@ -34,6 +34,14 @@ class UserController extends AbstractController
 
         if($userForm->isSubmitted() && $userForm->isValid()){
 
+            $existingUser= $userRepository->findOneBy(['email' => $userForm->get('email')->getData()]);
+
+            if($existingUser){
+
+                $this->addFlash('error','Il existe déjà un compte pour cette adresse mail');
+
+                return $this->redirectToRoute('add-user');
+            }
             $clearPassword = $userForm->get('password')->getData();
             $hashedPassword = $passwordHasher->hashPassword($user, $clearPassword);
             $user->setPassword($hashedPassword);

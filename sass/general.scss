@@ -17,6 +17,7 @@ a{
   font-weight: lighter;
   text-transform: uppercase;
 }
+/*------------Message---FLASH-----------*/
 .success_message{
   background-color: rgba(255, 255, 255, 0.61);
   width: 100%;
@@ -38,6 +39,24 @@ a{
   font-family: "montserrat", Sans-Serif;
   font-size: 18px;
   color: red;
-  font-weight: bolder;
+  font-weight: 500;
+  z-index: 200;
 
+}
+
+/*------------Page---Error-----------*/
+
+.error{
+  width: 100%;
+  height: 83vh;
+  :nth-child(2){
+    position: absolute;
+    top: 100px;
+    left: 350px;
+    color: white;
+    font-family: "montserrat", Sans-Serif;
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 30px;
+  }
 }
